@@ -12,7 +12,6 @@
         $number_of_items=0;
         }
 
-
         //if Add to Cart is pressed
         if (isset($_GET["product_id"]) && isset($_GET["query_type"])){
             if ($_GET["query_type"]=='add_to_cart'){

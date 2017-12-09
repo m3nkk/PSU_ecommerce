@@ -125,24 +125,53 @@
 							<!-- Shopping Cart Item -->
 							<tr>
 								<!-- Shopping Cart Item Image -->
-								<td class="image"><a href="page-product-details.html"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
+								<td class="image"><a href="page-product-details.html"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name" style="height:80%;width:80%;"></a></td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td>
 									<div class="cart-item-title"><a href="page-product-details.html"><?php echo $row["name"]; ?></a></div>
+                                                                        <div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
+
 									
 								</td>
 								<!-- Shopping Cart Item Quantity -->
 								<td class="quantity">
-									<input class="form-control input-sm input-micro" type="text" value="<?php $quantity ?>">
+									<input class="form-control input-sm input-micro" type="text" value="<?php echo $quantity ?>">
 								</td>
 								<!-- Shopping Cart Item Price -->
-								<td class="price"><?php echo $row["price"]; ?></td>
+								<td class="price"><?php echo $row["price"] .'SAR' ?></td>
 								<!-- Shopping Cart Item Actions -->
 								<td class="actions">
 									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-pencil"></i></a>
 									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-trash"></i></a>
 								</td>
 							</tr>
+                                                        
+<!--                                                        
+							<tr>
+								 Shopping Cart Item Image 
+								<td class="image"><a href="page-product-details.html"><img src="img/product1.jpg" alt="Item Name"></a></td>
+								 Shopping Cart Item Description & Features 
+								<td>
+									<div class="cart-item-title"><a href="page-product-details.html">LOREM IPSUM DOLOR</a></div>
+									<div class="feature color">
+										Color: <span class="color-white"></span>
+									</div>
+									<div class="feature">Size: <b>XXL</b></div>
+								</td>
+								 Shopping Cart Item Quantity 
+								<td class="quantity">
+									<input class="form-control input-sm input-micro" type="text" value="1">
+								</td>
+								 Shopping Cart Item Price 
+								<td class="price">$999.99</td>
+								 Shopping Cart Item Actions 
+								<td class="actions">
+									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-pencil"></i></a>
+									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-trash"></i></a>
+								</td>
+							</tr> -->
+                                              
+                                                        
                                                          <?php }
     } ?>
 							<!-- End Shopping Cart Item -->
@@ -186,11 +215,11 @@
 							</tr>
 							<tr>
 								<td><b>Discount</b></td>
-								<td>- $18.00</td>
+								<td>- 18.00 SAR</td>
 							</tr>
 							<tr class="cart-grand-total">
 								<td><b>Total</b></td>
-								<td><b>$163.55</b></td>
+								<td><b><?php echo $total-18 ?> SAR</b></td>
 							</tr>
 						</table>
 						<!-- Action Buttons -->
