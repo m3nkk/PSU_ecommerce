@@ -14,6 +14,11 @@
     
     	<style>
     	
+    
+    
+    
+    
+    
     .ellipsis{
 text-overflow:ellipsis;
 white-space: nowrap;
