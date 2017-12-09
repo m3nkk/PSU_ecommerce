@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<?php
 	include "dbconnect.php";
-        session_start();
+        session_start(); 
        
         if (!isset($_SESSION["number_of_items"])){
         $_SESSION["number_of_items"]=0;
