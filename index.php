@@ -9,29 +9,15 @@
 	$result = $conn->query($sql);
 	?>
     <head>
-    
-    
-    
+
     	<style>
-    	
-    
-    
-    
-    
-    
     .ellipsis{
 text-overflow:ellipsis;
 white-space: nowrap;
 overflow: hidden;
-}
-    	
-    	
-    	
+} 	
     	</style>
-    
-    
-    
-    
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>mPurpose - Multipurpose Feature Rich Bootstrap Template</title>
@@ -168,7 +154,7 @@ overflow: hidden;
 								<h3><a href="page-product-details.html"><?php  echo $row["name"]?></a></h3>
 							</div>
 							<div class="price">
-								$<?php  echo $row["price"]?> 
+								SAR&nbsp;<?php  echo $row["price"]?> 
 							</div>
 							<div class="description ellipsis">
 								<p class= "ellipsis"><?php  echo $row["short_description"]?></p>
