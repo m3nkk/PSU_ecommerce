@@ -139,7 +139,7 @@
 					<div class="col-sm-4">
 						<div class="shop-item">
 							<div class="image">
-								<a href="page-product-details.html"><img src="<?php  echo $row["image_link"]?>" alt="Item Name"></a>
+								<a href="page-product-details.html"><img src="<?php  echo $row["image_link"]?>" alt="Item Name" style="height:80%;width:80%;"></a>
 							</div>
 							<div class="title">
 								<h3><a href="page-product-details.html"><?php  echo $row["name"]?></a></h3>
