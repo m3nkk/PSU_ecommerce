@@ -145,7 +145,7 @@
 								<h3><a href="page-product-details.html"><?php  echo $row["name"]?></a></h3>
 							</div>
 							<div class="price">
-								$<?php  echo $row["price"]?>
+								$<?php  echo $row["price"]?> 
 							</div>
 							<div class="description">
 								<p><?php  echo $row["short_description"]?></p>
