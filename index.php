@@ -9,6 +9,9 @@
 	$result = $conn->query($sql);
 	?>
     <head>
+    
+    
+    
     	<style>
     	
     .ellipsis{
