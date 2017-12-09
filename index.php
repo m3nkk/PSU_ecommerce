@@ -39,7 +39,7 @@ overflow: hidden;
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>mPurpose - Multipurpose Feature Rich Bootstrap Template</title>
+        <title>PSU Store</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -86,7 +86,7 @@ overflow: hidden;
 		        </div>
 		        <nav id="mainmenu" class="mainmenu">
 					<ul>
-						<li class="logo-wrapper"><a href="index.html"><img src="img/psu_logo.png" alt="PSU"></a></li>
+						<li class="logo-wrapper"><a href="index.php"><img src="img/psu_logo.png" alt="PSU"></a></li>
 						<li class="active">
 							<a href="index.php">Home</a>
 						</li>
