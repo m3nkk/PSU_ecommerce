@@ -90,7 +90,7 @@
 								<div class="form-group">
 		        				 	<label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
 									<input class="form-control" id="register-password" name="register-password" type="password" placeholder="">
-								</div>
+								</div> 
 								<div class="form-group">
 		        				 	<label for="register-password2"><i class="icon-lock"></i> <b>First Name</b></label>
 									<input class="form-control" id="register-firstName" name="register-firstName" type="text" placeholder="">
