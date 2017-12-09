@@ -9,6 +9,21 @@
 	$result = $conn->query($sql);
 	?>
     <head>
+    	<style>
+    	
+    .ellipsis{
+text-overflow:ellipsis;
+white-space: nowrap;
+overflow: hidden;
+}
+    	
+    	
+    	
+    	</style>
+    
+    
+    
+    
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>mPurpose - Multipurpose Feature Rich Bootstrap Template</title>
@@ -136,7 +151,7 @@
    							while($row = $result->fetch_assoc()) {
    							    
    					?>
-					<div class="col-sm-4">
+					<div class="col-sm-4 ellipsis">
 						<div class="shop-item">
 							<div class="image">
 								<a href="page-product-details.html"><img src="<?php  echo $row["image_link"]?>" alt="Item Name" style="height:80%;width:80%;"></a>
@@ -147,8 +162,8 @@
 							<div class="price">
 								$<?php  echo $row["price"]?> 
 							</div>
-							<div class="description">
-								<p><?php  echo $row["short_description"]?></p>
+							<div class="description ellipsis">
+								<p class= "ellipsis"><?php  echo $row["short_description"]?></p>
 							</div>
 							<div class="actions">
 								<a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>

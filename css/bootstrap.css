@@ -5,6 +5,17 @@
  */
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+
+.ellipsis{
+text-overflow:ellipsis;
+white-space: nowrap;
+overflow: hidden;
+}
+
+
+
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
