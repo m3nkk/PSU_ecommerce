@@ -51,8 +51,13 @@
 	        	<div class="menuextras">
 					<div class="extras">
 						<ul>
-							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>0 items</b></a></li>
-							<li>
+                                                <?php
+                                                if (isset($_SESSION["number_of_items"])){
+                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"]. ' items</b></a></li>';
+                                                }else{
+                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b> 0 items</b></a></li>';
+                                                }
+						?>	<li>
 								<div class="dropdown choose-country">
 									<a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
 									<ul class="dropdown-menu" role="menu">
@@ -66,7 +71,7 @@
 		        </div>
 		        <nav id="mainmenu" class="mainmenu">
 					<ul>
-						<li class="logo-wrapper"><a href="index.php"><img src="img/psu_logo.png" alt="PSU"></a></li>
+						<li class="logo-wrapper"><a href="index.html"><img src="img/psu_logo.png" alt="PSU"></a></li>
 						<li class="active">
 							<a href="index.php">Home</a>
 						</li>
@@ -125,7 +130,7 @@
 							<!-- Shopping Cart Item -->
 							<tr>
 								<!-- Shopping Cart Item Image -->
-								<td class="image"><a href="page-product-details.html"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name" style="height:80%;width:80%;"></a></td>
+								<td class="image"><a href="page-product-details.html"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td>
 									<div class="cart-item-title"><a href="page-product-details.html"><?php echo $row["name"]; ?></a></div>

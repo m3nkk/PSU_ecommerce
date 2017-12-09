@@ -6,7 +6,7 @@
 	<?php
 	include "dbconnect.php";
         session_start();
-        $number_of_items;
+       
         if (!isset($_SESSION["number_of_items"])){
         $_SESSION["number_of_items"]=0;
         $number_of_items=0;
@@ -19,8 +19,7 @@
                 $_SESSION["shopping_cart"][$number_of_items]=$_GET["product_id"];
                 $_SESSION["number_of_items"]=$_SESSION["number_of_items"]+1;
                 $number_of_items=$_SESSION["number_of_items"];
-                echo count($_SESSION["shopping_cart"])."<br";
-                echo $number_of_items."<br>";
+              
             }
 
         }
@@ -69,7 +68,7 @@ overflow: hidden;
 						<ul>
                                                 <?php
                                                 if (isset($_SESSION["number_of_items"])){
-                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $number_of_items. ' items</b></a></li>';
+                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"]. ' items</b></a></li>';
                                                 }else{
                                                     echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b> 0 items</b></a></li>';
                                                 }
