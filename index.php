@@ -5,6 +5,27 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<?php
 	include "dbconnect.php";
+        session_start();
+        $number_of_items;
+        if (!isset($_SESSION["number_of_items"])){
+        $_SESSION["number_of_items"]=0;
+        $number_of_items=0;
+        }
+
+
+        //if Add to Cart is pressed
+        if (isset($_GET["product_id"]) && isset($_GET["query_type"])){
+            if ($_GET["query_type"]=='add_to_cart'){
+                $number_of_items=$_SESSION["number_of_items"];
+                $_SESSION["shopping_cart"][$number_of_items]=$_GET["product_id"];
+                $_SESSION["number_of_items"]=$_SESSION["number_of_items"]+1;
+                $number_of_items=$_SESSION["number_of_items"];
+                echo count($_SESSION["shopping_cart"])."<br";
+                echo $number_of_items."<br>";
+            }
+
+        }
+
 	$sql = "SELECT * FROM products";
 	$result = $conn->query($sql);
 	?>
@@ -47,8 +68,13 @@ overflow: hidden;
 	        	<div class="menuextras">
 					<div class="extras">
 						<ul>
-							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>0 items</b></a></li>
-							<li>
+                                                <?php
+                                                if (isset($_SESSION["number_of_items"])){
+                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $number_of_items. ' items</b></a></li>';
+                                                }else{
+                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b> 0 items</b></a></li>';
+                                                }
+						?>	<li>
 								<div class="dropdown choose-country">
 									<a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
 									<ul class="dropdown-menu" role="menu">
@@ -143,6 +169,7 @@ overflow: hidden;
 					<?php
 						if ($result->num_rows > 0) {
    							while($row = $result->fetch_assoc()) {
+                                                            
    							    
    					?>
 					<div class="col-sm-4 ellipsis">
@@ -160,7 +187,7 @@ overflow: hidden;
 								<p class= "ellipsis"><?php  echo $row["short_description"]?></p>
 							</div>
 							<div class="actions">
-								<a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+								<a href="<?php echo "index.php?product_id=".$row['id']."&query_type=add_to_cart"; ?>" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
 							</div>
 						</div>
 					</div>
