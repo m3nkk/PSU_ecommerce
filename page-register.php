@@ -82,26 +82,26 @@
 				<div class="row">
 					<div class="col-sm-7">
 						<div class="basic-login">
-							<form role="form">
+							<form role="form" method="post" action="register.php">
 								<div class="form-group">
 		        				 	<label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-									<input class="form-control" id="register-username" type="text" placeholder="">
+									<input class="form-control" id="register-studentid" name="register-studentid" type="text" placeholder="">
 								</div>
 								<div class="form-group">
 		        				 	<label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
-									<input class="form-control" id="register-password" type="password" placeholder="">
+									<input class="form-control" id="register-password" name="register-password" type="password" placeholder="">
 								</div>
 								<div class="form-group">
 		        				 	<label for="register-password2"><i class="icon-lock"></i> <b>First Name</b></label>
-									<input class="form-control" id="register-firstName" type="text" placeholder="">
+									<input class="form-control" id="register-firstName" name="register-firstName" type="text" placeholder="">
 								</div>
 								<div class="form-group">
 		        				 	<label for="register-password2"><i class="icon-lock"></i> <b>Last Name</b></label>
-									<input class="form-control" id="register-lastName" type="text" placeholder="">
+									<input class="form-control" id="register-lastName" name="register-lastName" type="text" placeholder="">
 								</div>
 								<div class="form-group">
 		        				 	<label for="register-password2"><i class="icon-lock"></i> <b>Email</b></label>
-									<input class="form-control" id="register-email" type="email" placeholder="">
+									<input class="form-control" id="register-email" name="register-email" type="email" placeholder="">
 								</div>
 								<div class="form-group">
 									<button type="submit" class="btn pull-right">Register</button>
