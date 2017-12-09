@@ -30,7 +30,7 @@
         session_start();
         include "dbconnect.php";
         $sql="";
-        if (isset($_SESSION["number_of_items"])) {
+        if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"])) {
             $number_of_items = $_SESSION["number_of_items"];
             $sql = "select * from products where ";
             for ($i = 0; $i < $number_of_items - 1; $i++) {
@@ -121,6 +121,7 @@
                                                         <?php
                                                         $total = 0;
                                                         $quantity =0;
+                                                        if($sql!=""){
                                                         $result = $conn->query($sql);
                                                         if (isset($_SESSION["number_of_items"])) {
                                                             while ($row = $result->fetch_assoc()) {
@@ -143,7 +144,7 @@
 									<input class="form-control input-sm input-micro" type="text" value="<?php echo $quantity ?>">
 								</td>
 								<!-- Shopping Cart Item Price -->
-								<td class="price"><?php echo $row["price"] .'SAR' ?></td>
+								<td class="price"><?php echo $row["price"]*$quantity .'SAR' ?></td>
 								<!-- Shopping Cart Item Actions -->
 								<td class="actions">
 									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -178,7 +179,7 @@
                                               
                                                         
                                                          <?php }
-    } ?>
+                                                        } }?>
 							<!-- End Shopping Cart Item -->
 							
 						</table>
@@ -220,11 +221,11 @@
 							</tr>
 							<tr>
 								<td><b>Discount</b></td>
-								<td>- 18.00 SAR</td>
+								<td>- 0 SAR</td>
 							</tr>
 							<tr class="cart-grand-total">
 								<td><b>Total</b></td>
-								<td><b><?php echo $total-18 ?> SAR</b></td>
+								<td><b><?php echo $total ?> SAR</b></td>
 							</tr>
 						</table>
 						<!-- Action Buttons -->
