@@ -21,10 +21,15 @@
                 $number_of_items=$_SESSION["number_of_items"];
               
             }
-
         }
-
-	$sql = "SELECT * FROM products";
+        // items display based on pagenumber 
+        if(!isset($_GET["pageNumber"])){
+        $_GET["pageNumber"]=1;    
+	$sql = "SELECT * FROM products limit 0, 6";
+        }
+        else{
+        $sql = "SELECT * FROM products limit ". (intval($_GET["pageNumber"])-1)*7 .", 6";  
+        }
 	$result = $conn->query($sql);
 	?>
     <head>
@@ -205,18 +210,20 @@ overflow: hidden;
 				</div>
 				<div class="pagination-wrapper ">
 					<ul class="pagination pagination-lg">
-						<li class="disabled"><a href="#">Previous</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">6</a></li>
-						<li><a href="#">7</a></li>
-						<li><a href="#">8</a></li>
-						<li><a href="#">9</a></li>
-						<li><a href="#">10</a></li>
-						<li><a href="#">Next</a></li>
+                                            
+						<li class="disabled"><a href="index.php">Previous</a></li>
+						<li class="active"><a href="index.php?pageNumber=1">1</a></li>
+						<li><a href="index.php?pageNumber=2">2</a></li>
+						<li><a href="index.php?pageNumber=3">3</a></li>
+						<li><a href="index.php?pageNumber=4">4</a></li>
+						<li><a href="index.php?pageNumber=5">5</a></li>
+						<li><a href="index.php?pageNumber=6">6</a></li>
+						<li><a href="index.php?pageNumber=7">7</a></li>
+						<li><a href="index.php?pageNumber=8">8</a></li>
+						<li><a href="index.php?pageNumber=9">9</a></li>
+						<li><a href="index.php?pageNumber=10">10</a></li>
+                                                <li><a href="index.php">Next</a></li>
+                                                
 					</ul>
 				</div>
 			</div>
