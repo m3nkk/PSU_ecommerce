@@ -3,6 +3,12 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <?php
+    session_start(); 
+    if (isset($_SESSION["login_user"])){
+        header("location: index.php");
+    }   
+     ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -33,24 +39,37 @@
 	        	<div class="menuextras">
 					<div class="extras">
 						<ul>
-							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>0 items</b></a></li>
-							<li>
+                                                <?php
+                                                if (isset($_SESSION["number_of_items"])){
+                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"]. ' items</b></a></li>';
+                                                }else{
+                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b> 0 items</b></a></li>';
+                                                }
+						?>	
+                                                    <li>
 								<div class="dropdown choose-country">
 									<a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
 									<ul class="dropdown-menu" role="menu">
 										<li role="menuitem"><a href="#"><img src="img/flags/us.png" alt="United States"> US</a></li>
 									</ul>
 								</div>
-							</li>
-			        		<li><a href="page-login.html">Login</a></li>
+						    </li>
+                                                <?php
+                                                if (isset($_SESSION["login_user"])){
+			        		echo '<li>Welcome <b>'.$_SESSION["login_user"].'</b></li>'; 
+                                                }
+                                                else{
+                                                  echo '<li><a href="page-login.php">Login</a></li>'; 
+                                                }
+                                                ?>
 			        	</ul>
 					</div>
 		        </div>
 		        <nav id="mainmenu" class="mainmenu">
 					<ul>
-						<li class="logo-wrapper"><a href="index.html"><img src="img/psu_logo.png" alt="PSU"></a></li>
+						<li class="logo-wrapper"><a href="index.php"><img src="img/psu_logo.png" alt="PSU"></a></li>
 						<li class="active">
-							<a href="index.html">Home</a>
+							<a href="index.php">Home</a>
 						</li>
 						<li>
 							<a href="#">Buy</a>

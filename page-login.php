@@ -2,7 +2,13 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+    <?php
+    session_start(); 
+    if (isset($_SESSION["login_user"])){
+        header("location: index.php");
+    }   
+     ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,7 +34,7 @@
         <![endif]-->
         
         <!-- Navigation & Logo-->
-               <div class="mainmenu-wrapper">
+       <div class="mainmenu-wrapper">
 	        <div class="container">
 	        	<div class="menuextras">
 					<div class="extras">
@@ -79,10 +85,48 @@
 			</div>
 		</div>
 
+        <!-- Page Title -->
+		<div class="section section-breadcrumbs" >
+			<div class="container"">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Login</h1>
+					</div>
+				</div>
+			</div>
+		</div>
         
+        <div class="section">
+	    	<div class="container"  style="margin: 0 30%;">
+				<div class="row"> 
+					<div class="col-sm-7">
+						<div class="basic-login">
+                                                    <form role="form" role="form" method="POST" action="login.php">
+								<div class="form-group">
+		        				 	<label for="login-username"><i class="icon-user"></i> <b>Student ID</b></label>
+                                                                <input class="form-control" id="login-username" type="text" placeholder="" name="username">
+								</div>
+								<div class="form-group">
+		        				 	<label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
+									<input class="form-control" id="login-password" type="password" placeholder="" name="password">
+								</div>
+								<div class="form-group">
+									<label class="checkbox">
+										<input type="checkbox"> Remember me
+									</label>
+									<a href="page-password-reset.html" class="forgot-password">Forgot password?</a><br><br>
+									<span>Not a member? &nbsp;&nbsp;&nbsp;&nbsp;</span><a href="page-register.php">Register here</a>
+									<button type="submit" class="btn pull-right">Login</button>
+									<div class="clearfix"></div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-
-	    <!-- Footer -->
+	     <!-- Footer -->
 	    <div class="footer">
 	    	<div class="container">
 		    	<div class="row">
