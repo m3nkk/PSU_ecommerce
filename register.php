@@ -2,11 +2,11 @@
 
 include "dbconnect.php";
 
-$studentid=$_POST['register-studentid'];
-$password=$_POST['register-password'];
-$firstName=$_POST['register-firstName'];
-$lastName=$_POST['register-lastName'];
-$email=$_POST['register-email'];
+$studentid=$_POST['reg_studentid'];
+$password=$_POST['reg_password'];
+$firstName=$_POST['reg_firstName'];
+$lastName=$_POST['reg_lastName'];
+$email=$_POST['reg_email'];
 
 
 $sql = "INSERT INTO users VALUES ('$studentid','$firstName','$lastName','student','$email','$password')";
