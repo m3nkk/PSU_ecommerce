@@ -9,19 +9,20 @@
        
         if (!isset($_SESSION["number_of_items"])){
         $_SESSION["number_of_items"]=0;
-        $number_of_items=0;
         }
 
         //if Add to Cart is pressed
         if (isset($_GET["product_id"]) && isset($_GET["query_type"])){
             if ($_GET["query_type"]=='add_to_cart'){
-                $number_of_items=$_SESSION["number_of_items"];
-                $_SESSION["shopping_cart"][$number_of_items]=$_GET["product_id"];
-                $_SESSION["number_of_items"]=$_SESSION["number_of_items"]+1;
-                $number_of_items=$_SESSION["number_of_items"];
-              
+                if(!isset($_SESSION["shopping_cart"][$_GET["product_id"]])){
+                    $_SESSION["shopping_cart"][$_GET["product_id"]]= array('product_id' => $_GET["product_id"], 'quantity' => 1);
+                    }else{
+                        $_SESSION["shopping_cart"][$_GET["product_id"]]["quantity"]++;
+                    }
+                $_SESSION["number_of_items"]++;
             }
         }
+        
         // items display based on pagenumber 
         if(!isset($_GET["pageNumber"])){
         $_GET["pageNumber"]=1;    
@@ -198,7 +199,7 @@ overflow: hidden;
 								<p class= "ellipsis"><?php  echo $row["short_description"]?></p>
 							</div>
 							<div class="actions">
-								<a href="<?php echo "index.php?product_id=".$row['id']."&query_type=add_to_cart"; ?>" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+								<a href="<?php echo "index.php?product_id=".$row['id']."&query_type=add_to_cart&pageNumber=".$_GET["pageNumber"]; ?>" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
 							</div>
 						</div>
 					</div>

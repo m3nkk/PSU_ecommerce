@@ -3,6 +3,20 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+        <?php 
+        include "dbconnect.php";
+        session_start();
+        $sql="";
+        
+        if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"])) {
+            $sql = "select * from products where ";
+            foreach ($_SESSION["shopping_cart"] as $Product){
+                $sql = $sql . " id = " . $Product['product_id'] . " or ";
+                }
+         $sql =chop($sql," or ");
+        }
+        
+        ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -23,28 +37,6 @@
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-        <?php 
-        session_start();
-        include "dbconnect.php";
-        $sql="";
-        if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"])) {
-            $number_of_items = $_SESSION["number_of_items"];
-            $sql = "select * from products where ";
-            for ($i = 0; $i < $number_of_items - 1; $i++) {
-                $sql = $sql . " id = " . $_SESSION["shopping_cart"][$i] . " or ";
-            }
-            $sql = $sql . " id = " . $_SESSION["shopping_cart"][$number_of_items - 1];
-
-
-            $result = $conn->query($sql);
-            $sql=$sql." ";
-        }
-        
-        ?>
-        
         <!-- Navigation & Logo-->
         <div class="mainmenu-wrapper">
 	        <div class="container">
@@ -128,21 +120,19 @@
 						<table class="shopping-cart">
                                                         <?php
                                                         $total = 0;
-                                                        $quantity =0;
                                                         if($sql!=""){
                                                         $result = $conn->query($sql);
-                                                        if (isset($_SESSION["number_of_items"])) {
                                                             while ($row = $result->fetch_assoc()) {
-                                                                $quantity = substr_count($sql, "id = ".$row["id"]." ");
-                                                                $total = $quantity * $row["price"] + $total;
+                                                                $quantity = $_SESSION["shopping_cart"][$row["id"]]["quantity"];
+                                                                $total += $quantity * $row["price"];
                                                                 ?>
 							<!-- Shopping Cart Item -->
 							<tr>
 								<!-- Shopping Cart Item Image -->
-								<td class="image"><a href="page-product-details.html"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
+								<td class="image"><a href="page-product-details.php"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td>
-									<div class="cart-item-title"><a href="page-product-details.html"><?php echo $row["name"]; ?></a></div>
+									<div class="cart-item-title"><a href="page-product-details.php"><?php echo $row["name"]; ?></a></div>
                                                                         <div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
 
 									
@@ -159,35 +149,10 @@
 									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-trash"></i></a>
 								</td>
 							</tr>
-                                                        
-<!--                                                        
-							<tr>
-								 Shopping Cart Item Image 
-								<td class="image"><a href="page-product-details.html"><img src="img/product1.jpg" alt="Item Name"></a></td>
-								 Shopping Cart Item Description & Features 
-								<td>
-									<div class="cart-item-title"><a href="page-product-details.html">LOREM IPSUM DOLOR</a></div>
-									<div class="feature color">
-										Color: <span class="color-white"></span>
-									</div>
-									<div class="feature">Size: <b>XXL</b></div>
-								</td>
-								 Shopping Cart Item Quantity 
-								<td class="quantity">
-									<input class="form-control input-sm input-micro" type="text" value="1">
-								</td>
-								 Shopping Cart Item Price 
-								<td class="price">$999.99</td>
-								 Shopping Cart Item Actions 
-								<td class="actions">
-									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-pencil"></i></a>
-									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-trash"></i></a>
-								</td>
-							</tr> -->
-                                              
+                                                                                                 
                                                         
                                                          <?php }
-                                                        } }?>
+                                                         }?>
 							<!-- End Shopping Cart Item -->
 							
 						</table>
