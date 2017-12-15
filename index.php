@@ -89,7 +89,7 @@ overflow: hidden;
 						    </li>
                                                 <?php
                                                 if (isset($_SESSION["login_user"])){
-			        		echo '<li>Welcome <b>'.$_SESSION["login_user"].'</b></li>'; 
+			        		echo '<li>Welcome <b>'.$_SESSION["login_user"].'</b></li> <li><a href="logout.php">Logout</a></li>'; 
                                                 }
                                                 else{
                                                   echo '<li><a href="page-login.php">Login</a></li>'; 
