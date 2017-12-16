@@ -3,45 +3,49 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-	<?php
-	include "dbconnect.php";
-        session_start(); 
-       
-        if (!isset($_SESSION["number_of_items"])){
-        $_SESSION["number_of_items"]=0;
-        }
+    <?php
+    include "dbconnect.php";
+    session_start();
+    
+    //check if cookie exist
+    if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
+        $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
+    }
 
-        //if Add to Cart is pressed
-        if (isset($_GET["product_id"]) && isset($_GET["query_type"])){
-            if ($_GET["query_type"]=='add_to_cart'){
-                if(!isset($_SESSION["shopping_cart"][$_GET["product_id"]])){
-                    $_SESSION["shopping_cart"][$_GET["product_id"]]= array('product_id' => $_GET["product_id"], 'quantity' => 1);
-                    }else{
-                        $_SESSION["shopping_cart"][$_GET["product_id"]]["quantity"]++;
-                    }
-                $_SESSION["number_of_items"]++;
+    if (!isset($_SESSION["number_of_items"])) {
+        $_SESSION["number_of_items"] = 0;
+    }
+
+    //if Add to Cart is pressed
+    if (isset($_GET["product_id"]) && isset($_GET["query_type"])) {
+        if ($_GET["query_type"] == 'add_to_cart') {
+            if (!isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
+                $_SESSION["shopping_cart"][$_GET["product_id"]] = array('product_id' => $_GET["product_id"], 'quantity' => 1);
+            } else {
+                $_SESSION["shopping_cart"][$_GET["product_id"]]["quantity"] ++;
             }
+            $_SESSION["number_of_items"] ++;
         }
-        
-        // items display based on pagenumber 
-        if(!isset($_GET["pageNumber"])){
-        $_GET["pageNumber"]=1;    
-	$sql = "SELECT * FROM products limit 0, 6";
-        }
-        else{
-        $sql = "SELECT * FROM products limit ". (intval($_GET["pageNumber"])-1)*7 .", 6";  
-        }
-	$result = $conn->query($sql);
-	?>
+    }
+
+    // items display based on pagenumber 
+    if (!isset($_GET["pageNumber"])) {
+        $_GET["pageNumber"] = 1;
+        $sql = "SELECT * FROM products limit 0, 6";
+    } else {
+        $sql = "SELECT * FROM products limit " . (intval($_GET["pageNumber"]) - 1) * 7 . ", 6";
+    }
+    $result = $conn->query($sql);
+    ?>
     <head>
 
-    	<style>
-    .ellipsis{
-text-overflow:ellipsis;
-white-space: nowrap;
-overflow: hidden;
-} 	
-    	</style>
+        <style>
+            .ellipsis{
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            } 	
+        </style>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -54,10 +58,10 @@ overflow: hidden;
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="css/leaflet.css" />
-		<!--[if lte IE 8]>
-		    <link rel="stylesheet" href="css/leaflet.ie.css" />
-		<![endif]-->
-		<link rel="stylesheet" href="css/main.css">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/leaflet.ie.css" />
+        <![endif]-->
+        <link rel="stylesheet" href="css/main.css">
 
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -65,254 +69,257 @@ overflow: hidden;
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        
+
         <!-- Navigation & Logo-->
         <div class="mainmenu-wrapper">
-	        <div class="container">
-	        	<div class="menuextras">
-					<div class="extras">
-						<ul>
-                                                <?php
-                                                if (isset($_SESSION["number_of_items"])){
-                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"]. ' items</b></a></li>';
-                                                }else{
-                                                    echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b> 0 items</b></a></li>';
-                                                }
-						?>	
-                                                    <li>
-								<div class="dropdown choose-country">
-									<a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
-									<ul class="dropdown-menu" role="menu">
-										<li role="menuitem"><a href="#"><img src="img/flags/us.png" alt="United States"> US</a></li>
-									</ul>
-								</div>
-						    </li>
-                                                <?php
-                                                if (isset($_SESSION["login_user"])){
-			        		echo '<li>Welcome <b>'.$_SESSION["login_user"].'</b></li> <li><a href="logout.php">Logout</a></li>'; 
-                                                }
-                                                else{
-                                                  echo '<li><a href="page-login.php">Login</a></li>'; 
-                                                }
-                                                ?>
-			        	</ul>
-					</div>
-		        </div>
-		        <nav id="mainmenu" class="mainmenu">
-					<ul>
-						<li class="logo-wrapper"><a href="index.php"><img src="img/psu_logo.png" alt="PSU"></a></li>
-						<li class="active">
-							<a href="index.php">Home</a>
-						</li>
-						<li>
-							<a href="#">Buy</a>
-						</li>
-						<li>
-							<a href="#">Sell</a>
-						</li>
-						<li>
-							<a href="#">My Products</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+            <div class="container">
+                <div class="menuextras">
+                    <div class="extras">
+                        <ul>
+                            <?php
+                            echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
+                            ?>	
+                            <li>
+                                <div class="dropdown choose-country">
+                                    <a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li role="menuitem"><a href="#"><img src="img/flags/us.png" alt="United States"> US</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <?php
+                            if (isset($_SESSION["login_user"])) {
+                                echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
+                            } else {
+                                echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <nav id="mainmenu" class="mainmenu">
+                    <ul>
+                        <li class="logo-wrapper"><a href="index.php"><img src="img/psu_logo.png" alt="PSU"></a></li>
+                        <li class="active">
+                            <a href="index.php">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Buy</a>
+                        </li>
+                        <li>
+                            <a href="#">Sell</a>
+                        </li>
+                        <li>
+                            <a href="#">My Products</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
 
         <!-- Homepage Slider -->
         <div class="homepage-slider">
-        	<div id="sequence">
-				<ul class="sequence-canvas">
-					<!-- Slide 1 -->
-					<li class="bg4">
-						<!-- Slide Title -->
-						<h2 class="title">PSU Store</h2>
-						<!-- Slide Text -->
-						<h3 class="subtitle">Welcome to PSU online store for students!</h3>
-						<!-- Slide Image -->
-						<img class="slide-img" src="img/homepage-slider/slide1.png" alt="Slide 1" />
-					</li>
-					<!-- End Slide 1 -->
-					<!-- Slide 2 -->
-					<li class="bg3">
-						<!-- Slide Title -->
-						<h2 class="title">Al-Shegri Bookstore</h2>
-						<!-- Slide Text -->
-						<h3 class="subtitle">ENG 101 & ENG 103 now available!</h3>
-						<!-- Slide Image -->
-						<img class="slide-img" src="img/homepage-slider/slide2_2.jpg" alt="Slide 2" />
-					</li>
-					<!-- End Slide 2 -->
-					<!-- Slide 3 -->
-					<li class="bg1">
-						<!-- Slide Title -->
-						<h2 class="title">Online codes</h2>
-						<!-- Slide Text -->
-						<h3 class="subtitle">Due to popular demand, online code section has been added!</h3>
-						<!-- Slide Image -->
-						<img class="slide-img" src="img/homepage-slider/slide3.png" alt="Slide 3" />
-					</li>
-					<!-- End Slide 3 -->
-				</ul>
-				<div class="sequence-pagination-wrapper">
-					<ul class="sequence-pagination">
-						<li>1</li>
-						<li>2</li>
-						<li>3</li>
-					</ul>
-				</div>
-			</div>
+            <div id="sequence">
+                <ul class="sequence-canvas">
+                    <!-- Slide 1 -->
+                    <li class="bg4">
+                        <!-- Slide Title -->
+                        <h2 class="title">PSU Store</h2>
+                        <!-- Slide Text -->
+                        <h3 class="subtitle">Welcome to PSU online store for students!</h3>
+                        <!-- Slide Image -->
+                        <img class="slide-img" src="img/homepage-slider/slide1.png" alt="Slide 1" />
+                    </li>
+                    <!-- End Slide 1 -->
+                    <!-- Slide 2 -->
+                    <li class="bg3">
+                        <!-- Slide Title -->
+                        <h2 class="title">Al-Shegri Bookstore</h2>
+                        <!-- Slide Text -->
+                        <h3 class="subtitle">ENG 101 & ENG 103 now available!</h3>
+                        <!-- Slide Image -->
+                        <img class="slide-img" src="img/homepage-slider/slide2_2.jpg" alt="Slide 2" />
+                    </li>
+                    <!-- End Slide 2 -->
+                    <!-- Slide 3 -->
+                    <li class="bg1">
+                        <!-- Slide Title -->
+                        <h2 class="title">Online codes</h2>
+                        <!-- Slide Text -->
+                        <h3 class="subtitle">Due to popular demand, online code section has been added!</h3>
+                        <!-- Slide Image -->
+                        <img class="slide-img" src="img/homepage-slider/slide3.png" alt="Slide 3" />
+                    </li>
+                    <!-- End Slide 3 -->
+                </ul>
+                <div class="sequence-pagination-wrapper">
+                    <ul class="sequence-pagination">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <!-- End Homepage Slider -->
-        
+
         <!-- Page Title -->
-		<div class="section section-breadcrumbs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1>Recent items</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-        
+        <div class="section section-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Recent items</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="section">
-	    	<div class="container">
-				<div class="row">
-					<?php
-						if ($result->num_rows > 0) {
-   							while($row = $result->fetch_assoc()) {
-                                                            
-   							    
-   					?>
-					<div class="col-sm-4 ellipsis">
-						<div class="shop-item">
-							<div class="image">
-								<a href="page-product-details.php"><img src="<?php  echo $row["image_link"]?>" alt="Item Name" style="height:80%;width:80%;"></a>
-							</div>
-							<div class="title">
-								<h3><a href="page-product-details.php"><?php  echo $row["name"]?></a></h3>
-							</div>
-							<div class="price">
-								SAR&nbsp;<?php  echo $row["price"]?> 
-							</div>
-							<div class="description ellipsis">
-								<p class= "ellipsis"><?php  echo $row["short_description"]?></p>
-							</div>
-							<div class="actions">
-								<a href="<?php echo "index.php?product_id=".$row['id']."&query_type=add_to_cart&pageNumber=".$_GET["pageNumber"]; ?>" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
-							</div>
-						</div>
-					</div>
-					
-					<?php 
-   							}
-						}
-					?>
-				</div>
-				<div class="pagination-wrapper ">
-					<ul class="pagination pagination-lg">
-                                                <?php
-                                                $currentpage=$_GET["pageNumber"];
-                                                if($currentpage==1){
-                                                    $nextpage= $currentpage+1;
-                                                    $prevpage=10;
-                                                }else if($currentpage==10){
-                                                    $nextpage= 1;
-                                                    $prevpage=$currentpage-1;
-                                                }else{
-                                                    $nextpage= $currentpage+1;
-                                                    $prevpage=$currentpage-1;
-                                                }
-                                                
-						echo '<li><a href="index.php?pageNumber='.$prevpage.'">Previous</a></li>';
-                                                
-                                                if ($currentpage==1){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=1">1</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=1">1</a></li>';
-                                                
-                                                if ($currentpage==2){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=2">2</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=2">2</a></li>';
-                                                
-                                                if ($currentpage==3){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=3">3</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=3">3</a></li>';
-                                                
-                                                if ($currentpage==4){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=4">4</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=4">4</a></li>';
-                                                
-                                                if ($currentpage==5){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=5">5</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=5">5</a></li>';
-                                                
-                                                if ($currentpage==6){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=6">6</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=6">6</a></li>';
-                                                
-                                                if ($currentpage==7){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=7">7</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=7">7</a></li>';
-                                                
-                                                if ($currentpage==8){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=8">8</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=8">8</a></li>';
-                                                
-                                                if ($currentpage==9){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=9">9</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=9">9</a></li>';
-                                                
-                                                if ($currentpage==10){
-                                                    echo '<li class="active"><a href="index.php?pageNumber=10">10</a></li>';
-                                                }else  echo '<li><a href="index.php?pageNumber=10">10</a></li>';
-                                          
-                                                echo '<li><a href="index.php?pageNumber='.$nextpage.'">Next</a></li>';
-                                                ?>
-					</ul>
-				</div>
-			</div>
-	    </div>
+            <div class="container">
+                <div class="row">
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <div class="col-sm-4 ellipsis">
+                                <div class="shop-item">
+                                    <div class="image">
+                                        <a href="page-product-details.php"><img src="<?php echo $row["image_link"] ?>" alt="Item Name" style="height:80%;width:80%;"></a>
+                                    </div>
+                                    <div class="title">
+                                        <h3><a href="page-product-details.php"><?php echo $row["name"] ?></a></h3>
+                                    </div>
+                                    <div class="price">
+                                        SAR&nbsp;<?php echo $row["price"] ?> 
+                                    </div>
+                                    <div class="description ellipsis">
+                                        <p class= "ellipsis"><?php echo $row["short_description"] ?></p>
+                                    </div>
+                                    <div class="actions">
+                                        <a href="<?php echo "index.php?product_id=" . $row['id'] . "&query_type=add_to_cart&pageNumber=" . $_GET["pageNumber"]; ?>" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="pagination-wrapper ">
+                    <ul class="pagination pagination-lg">
+                        <?php
+                        $currentpage = $_GET["pageNumber"];
+                        if ($currentpage == 1) {
+                            $nextpage = $currentpage + 1;
+                            $prevpage = 10;
+                        } else if ($currentpage == 10) {
+                            $nextpage = 1;
+                            $prevpage = $currentpage - 1;
+                        } else {
+                            $nextpage = $currentpage + 1;
+                            $prevpage = $currentpage - 1;
+                        }
+
+                        echo '<li><a href="index.php?pageNumber=' . $prevpage . '">Previous</a></li>';
+
+                        if ($currentpage == 1) {
+                            echo '<li class="active"><a href="index.php?pageNumber=1">1</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=1">1</a></li>';
+
+                        if ($currentpage == 2) {
+                            echo '<li class="active"><a href="index.php?pageNumber=2">2</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=2">2</a></li>';
+
+                        if ($currentpage == 3) {
+                            echo '<li class="active"><a href="index.php?pageNumber=3">3</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=3">3</a></li>';
+
+                        if ($currentpage == 4) {
+                            echo '<li class="active"><a href="index.php?pageNumber=4">4</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=4">4</a></li>';
+
+                        if ($currentpage == 5) {
+                            echo '<li class="active"><a href="index.php?pageNumber=5">5</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=5">5</a></li>';
+
+                        if ($currentpage == 6) {
+                            echo '<li class="active"><a href="index.php?pageNumber=6">6</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=6">6</a></li>';
+
+                        if ($currentpage == 7) {
+                            echo '<li class="active"><a href="index.php?pageNumber=7">7</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=7">7</a></li>';
+
+                        if ($currentpage == 8) {
+                            echo '<li class="active"><a href="index.php?pageNumber=8">8</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=8">8</a></li>';
+
+                        if ($currentpage == 9) {
+                            echo '<li class="active"><a href="index.php?pageNumber=9">9</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=9">9</a></li>';
+
+                        if ($currentpage == 10) {
+                            echo '<li class="active"><a href="index.php?pageNumber=10">10</a></li>';
+                        } else
+                            echo '<li><a href="index.php?pageNumber=10">10</a></li>';
+
+                        echo '<li><a href="index.php?pageNumber=' . $nextpage . '">Next</a></li>';
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
 
-	    <!-- Footer -->
-	    <div class="footer">
-	    	<div class="container">
-		    	<div class="row">
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
 
-		    		<div class="col-footer col-md-3 col-xs-6">
-		    			<h3>Navigate</h3>
-		    			<ul class="no-list-style footer-navigate-section">
-		    				<li><a href="#">About Us</a></li>
-		    				<li><a href="#">Contact Us</a></li>
-		    				<li><a href="#">Services</a></li>
-		    				<li><a href="#">FAQ</a></li>
-		    			</ul>
-		    		</div>
-		    		
-		    		<div class="col-footer col-md-4 col-xs-6">
-		    			<h3>Contacts</h3>
-		    			<p class="contact-us-details">
-	        				<b>Address:</b> Riyadh, Saudi Arabia<br/>
-	        				<b>Phone:</b> +966 55 2020770<br/>
-	        				<b>Email:</b> <a href="mailto:m3n991@gmail.com">m3n991@gmail.com</a>
-	        			</p>
-		    		</div>
-		    		<div class="col-footer col-md-2 col-xs-6">
-		    			<h3>Stay Connected</h3>
-		    			<ul class="footer-stay-connected no-list-style">
-		    				<li><a href="#" class="facebook"></a></li>
-		    				<li><a href="#" class="twitter"></a></li>
-		    				<li><a href="#" class="googleplus"></a></li>
-		    			</ul>
-		    		</div>
-		    	</div>
-		    	<div class="row">
-		    		<div class="col-md-12">
-		    			<div class="footer-copyright">&copy; PSU Events, Web Project</div>
-		    		</div>
-		    	</div>
-		    </div>
-	    </div>
+                    <div class="col-footer col-md-3 col-xs-6">
+                        <h3>Navigate</h3>
+                        <ul class="no-list-style footer-navigate-section">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-footer col-md-4 col-xs-6">
+                        <h3>Contacts</h3>
+                        <p class="contact-us-details">
+                            <b>Address:</b> Riyadh, Saudi Arabia<br/>
+                            <b>Phone:</b> +966 55 2020770<br/>
+                            <b>Email:</b> <a href="mailto:m3n991@gmail.com">m3n991@gmail.com</a>
+                        </p>
+                    </div>
+                    <div class="col-footer col-md-2 col-xs-6">
+                        <h3>Stay Connected</h3>
+                        <ul class="footer-stay-connected no-list-style">
+                            <li><a href="#" class="facebook"></a></li>
+                            <li><a href="#" class="twitter"></a></li>
+                            <li><a href="#" class="googleplus"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-copyright">&copy; PSU Events, Web Project</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
