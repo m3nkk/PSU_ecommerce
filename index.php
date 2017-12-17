@@ -107,7 +107,7 @@
                             <a href="#">Buy</a>
                         </li>
                         <li>
-                            <a href="sell.php">List</a>
+                            <a href="sell.php">Sell</a>
                         </li>
                         <li>
                             <a href="#">My Products</a>
