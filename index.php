@@ -184,10 +184,10 @@
                             <div class="col-sm-4 ellipsis">
                                 <div class="shop-item">
                                     <div class="image">
-                                        <a href="page-product-details.php"><img src="<?php echo $row["image_link"] ?>" alt="Item Name" style="height:80%;width:80%;"></a>
+                                        <a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["image_link"] ?>" alt="Item Name" style="height:80%;width:80%;"></a>
                                     </div>
                                     <div class="title">
-                                        <h3><a href="page-product-details.php"><?php echo $row["name"] ?></a></h3>
+                                        <h3><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"] ?></a></h3>
                                     </div>
                                     <div class="price">
                                         SAR&nbsp;<?php echo $row["price"] ?> 
