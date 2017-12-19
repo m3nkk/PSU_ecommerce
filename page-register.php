@@ -104,8 +104,8 @@
 							<form role="form" method="post" action="register.php" onsubmit="return validateForm()">
 								<div class="form-group">
 		        				 	<label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-									<input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onchange="getIdRequest()" required>
-									<p id ="idMessage">...</p> 
+									<input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onkeyup="getIdRequest()" required>
+									
 								</div>
 								<div class="form-group">
 		        				 	<label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
@@ -122,7 +122,7 @@
 								<div class="form-group">
 		        				 	<label for="register-password2"><i class="icon-lock"></i> <b>Email</b></label>
 									<input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="" required>
-									<p id ="emailMessage">...</p> 
+									 
 								</div>
 								<div class="form-group">
 									<button type="submit" class="btn pull-right">Register</button>
@@ -131,6 +131,8 @@
 							</form>
 						</div>
 					</div>
+					<div></div>
+					<div class="col-sm-5">  <h2 id ="idMessage">...</h2>   </div>
 				</div>
 			</div>
 		</div>

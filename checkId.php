@@ -12,9 +12,9 @@ if (isset($_POST["id"])){
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
-        // echo '<message>'.$id.' already registered </message>';
-        echo '<message>2</message>';
-        echo '<code>'.strlen($id).'</code>';
+       echo '<message>Incorrect ID</message>';
+        echo '<code>3</code>';
+       
         echo '</response>';
     }else {
     
@@ -28,8 +28,8 @@ if (isset($_POST["id"])){
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
-       // echo '<message>'.$id.' already registered </message>';
-        echo '<message>2</message>';
+       echo '<message>ID is already registered !</message>';
+        echo '<code>2</code>';
         
         echo '</response>';
         
@@ -40,8 +40,8 @@ if (isset($_POST["id"])){
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
         //echo '<message> "<i class="glyphicon glyphicon-check"></i>" </message>';
-        //echo '<message>'.$id.' is available </message>';
-        echo '<message>1</message>';
+        echo '<message> is available </message>';
+        echo '<code>1</code>';
         
         echo '</response>';
     }
@@ -51,7 +51,8 @@ if (isset($_POST["id"])){
     header('Content-Type: text/xml');
     echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
     echo ('<response>');
-    echo '<message>Query Error</message>';
+    //echo '<message>Query Error</message>';
+    echo '<message>0</message>';
     echo '</response>';
 }
 

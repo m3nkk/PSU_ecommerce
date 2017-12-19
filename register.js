@@ -50,14 +50,16 @@ function idCallback(){
 			
 		
 			var xmlResponse = xmlHttp.responseXML;
-		
-		
-			var  message = xmlResponse.getElementsByTagName("message")[0].childNodes[0].nodeValue;
 			
-			if (message=="1"){
-			document.getElementById("idMessage").innerHTML =  '<i class="glyphicon glyphicon-ok"></i>';
+			var id = document.getElementById("reg_studentid").value;
+			var  code = xmlResponse.getElementsByTagName("code")[0].childNodes[0].nodeValue;
+			var message = xmlResponse.getElementsByTagName("message")[0].childNodes[0].nodeValue;
 			
-		}	else{  document.getElementById("idMessage").innerHTML =  '<i class="glyphicon glyphicon-remove"></i>';} 
+			if (code=="1"){
+				document.getElementById("idMessage").innerHTML =  id +'<br><span style="color:#50c878"><i class="glyphicon glyphicon-ok"></i>  '+message+'</span>';
+			}	else{
+				document.getElementById("idMessage").innerHTML =  id +'<br><span style="color:#8b0000 "><i class="glyphicon glyphicon-remove"></i>  '+message+'</span>';
+			} 
 			
 			
 			
@@ -84,10 +86,15 @@ function validateForm(){
     	valid = false;
     	alert("Incorrect e-mail");
     }
-    if(studentid.length != 9){
+     if(studentid.length != 9){
     	valid = false;
     	alert("Incorrect student ID");
+    } if(isNaN(studentId)){
+    	valid = false;
+    	alert("ID has to be a number");
     }
+    
+    
     
 	return valid;
 	
