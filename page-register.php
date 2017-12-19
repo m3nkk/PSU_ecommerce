@@ -74,7 +74,7 @@ if (isset($_SESSION["login_user"])) {
                             <a href="#">Buy</a>
                         </li>
                         <li>
-                            <a href="#">Sell</a>
+                             <a href="sell.php">Sell</a>
                         </li>
                         <li>
                             <a href="#">My Products</a>

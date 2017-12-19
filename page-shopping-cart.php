@@ -6,6 +6,9 @@
         <?php 
         include "dbconnect.php";
         session_start();
+        if (!isset($_SESSION["number_of_items"])) {
+        $_SESSION["number_of_items"] = 0;
+        }
         $sql="";
         
         if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"])) {
@@ -77,7 +80,7 @@
 							<a href="#">Buy</a>
 						</li>
 						<li>
-							<a href="#">Sell</a>
+							 <a href="sell.php">Sell</a>
 						</li>
 						<li>
 							<a href="#">My Products</a>
@@ -127,17 +130,17 @@
 							<!-- Shopping Cart Item -->
 							<tr>
 								<!-- Shopping Cart Item Image -->
-								<td class="image"><a href="page-product-details.php"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
+								<td class="image"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td>
-									<div class="cart-item-title"><a href="page-product-details.php"><?php echo $row["name"]; ?></a></div>
+									<div class="cart-item-title"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a></div>
                                                                         <div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
 
 									
 								</td>
 								<!-- Shopping Cart Item Quantity -->
 								<td class="quantity">
-									<input class="form-control input-sm input-micro" type="text" value="<?php echo $quantity ?>">
+                                                                    <input class="form-control input-sm input-micro" type="number" min="1" value="<?php echo $quantity ?>">
 								</td>
 								<!-- Shopping Cart Item Price -->
 								<td class="price"><?php echo $row["price"]*$quantity .'SAR' ?></td>
