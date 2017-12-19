@@ -96,7 +96,7 @@ if (isset($_SESSION["login_user"])) {
         </div>
 
         <div class="section">
-<<<<<<< HEAD
+
 	    	<div class="container" style="margin: 0 30%;">
 				<div class="row">
 					<div class="col-sm-7">
@@ -104,7 +104,7 @@ if (isset($_SESSION["login_user"])) {
 							<form role="form" method="post" action="register.php" onsubmit="return validateForm()">
 								<div class="form-group">
 		        				 	<label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-									<input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onkeyup="getIdRequest()" required>
+									<input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onchange="getIdRequest()" required>
 									
 								</div>
 								<div class="form-group">
@@ -136,45 +136,6 @@ if (isset($_SESSION["login_user"])) {
 				</div>
 			</div>
 		</div>
-=======
-            <div class="container" style="margin: 0 30%;">
-                <div class="row">
-                    <div class="col-sm-7">
-                        <div class="basic-login">
-                            <form role="form" method="post" action="register.php" onsubmit="return validateForm()">
-                                <div class="form-group">
-                                    <label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-                                    <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onchange="getIdRequest()" required>
-                                    <p id ="idMessage">...</p> 
-                                </div>
-                                <div class="form-group">
-                                    <label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
-                                    <input class="form-control" id="reg_password" name="reg_password" type="password" placeholder="" required>
-                                </div> 
-                                <div class="form-group">
-                                    <label for="register-password2"><i class="icon-lock"></i> <b>First Name</b></label>
-                                    <input class="form-control" id="reg_firstName" name="reg_firstName" type="text" placeholder="" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="register-password2"><i class="icon-lock"></i> <b>Last Name</b></label>
-                                    <input class="form-control" id="reg_lastName" name="reg_lastName" type="text" placeholder="" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="register-password2"><i class="icon-lock"></i> <b>Email</b></label>
-                                    <input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="" required>
-                                    <p id ="emailMessage">...</p> 
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn pull-right">Register</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
->>>>>>> branch 'master' of https://github.com/m3nkk/PSU_ecommerce.git
 
         <!-- Footer -->
         <div class="footer">
