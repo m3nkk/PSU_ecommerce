@@ -69,9 +69,6 @@
                 <div class="menuextras">
                     <div class="extras">
                         <ul>
-                            <?php
-                            echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
-                            ?>	
                             <li>
                                 <div class="dropdown choose-country">
                                     <a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
@@ -80,13 +77,15 @@
                                     </ul>
                                 </div>
                             </li>
-<?php
-if (isset($_SESSION["login_user"])) {
-    echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
-} else {
-    echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
-}
-?>
+                            <?php
+                            if((isset($_SESSION['login_user']))){
+                            echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
+                            echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
+                            }else{
+                             echo '<li> <a href="page-register.php"><b><span class="glyphicon glyphicon-new-window"></span> Register</b></a></li>';
+                             echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -100,7 +99,7 @@ if (isset($_SESSION["login_user"])) {
                             <a href="#">Buy</a>
                         </li>
                         <li>
-                             <a href="sell.php">Sell</a>
+                            <a href="sell.php">Sell</a>
                         </li>
                         <li>
                             <a href="#">My Products</a>
@@ -155,9 +154,14 @@ if (isset($_SESSION["login_user"])) {
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>
-                                    
-                                    <a class="btn btn" onclick="AddToCart()">
-                                       <i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+                                    <?php
+                                     if((isset($_SESSION['login_user']))){
+                                      echo '<a class="btn btn" onclick="AddToCart()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
+                                     }else{
+                                       echo '<a class="btn btn" onClick="Myalert()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
+                                     }
+
+                                    ?>
                                 </td>
                             </tr>
                         </table>
@@ -239,7 +243,13 @@ if (isset($_SESSION["login_user"])) {
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
         <script>
-            function AddToCart() {window.location.href = "page-product-details.php?product_id="+"<?php echo $ProductID ?>"+"&Quantity="+document.getElementById("Quantity").value+"&query_type=add_to_cart"};
+            function AddToCart() {
+                 var regex=/^[a-zA-Z]+$/;
+                 var Quantity = document.getElementById("Quantity").value;
+                if((Quantity !=0)&&(!Quantity.match(regex))) window.location.href = "page-product-details.php?product_id="+"<?php echo $ProductID ?>"+"&Quantity="+document.getElementById("Quantity").value+"&query_type=add_to_cart";
+                else alert("Enter a number other than 0");
+    }
+    function Myalert(){ alert("You have to Log-in first")};
         </script>
     </body>
 </html>
