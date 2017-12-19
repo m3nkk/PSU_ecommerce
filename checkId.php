@@ -8,6 +8,7 @@ $num=0;
 if (isset($_POST["id"])){
     
     $id = $_POST["id"];
+    //ID too long or too short
     if (strlen($id) !=9){
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
@@ -23,6 +24,7 @@ if (isset($_POST["id"])){
     // $sql = "SELECT * FROM users where studentid= '"214110111"'";
     $result = $conn->query($sql);
     $num = $result->num_rows;
+   // if theres already a row in DB with that ID
     if ($num > 0) {
         
         header('Content-Type: text/xml');
@@ -35,7 +37,7 @@ if (isset($_POST["id"])){
         
         
     } else {
-        
+        // ID is available
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
