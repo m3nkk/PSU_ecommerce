@@ -22,7 +22,7 @@
         $_GET["pageNumber"] = 1;
         $sql = "SELECT * FROM products limit 0, 6";
     } else {
-        $sql = "SELECT * FROM products limit " . (intval($_GET["pageNumber"]) - 1) * 7 . ", 6";
+        $sql = "SELECT * FROM products limit " . (intval($_GET["pageNumber"]) - 1) * 6 . ", 6";
     }
     $result = $conn->query($sql);
     ?>
@@ -158,70 +158,33 @@
                 <div class="pagination-wrapper ">
                     <ul class="pagination pagination-lg">
                         <?php
+                        $sql = "SELECT count(*) FROM products";//where state =1; (TO ADD LATER)
+                        $result = $conn->query($sql);
+                        $row = $result->fetch_assoc();
+                        
+                        //this to get number of pages based on the displayed products number
+                        $NumberOfPages = ceil($row['count(*)']/6);
+                        
+                        //to get prev/next pages
                         $currentpage = $_GET["pageNumber"];
                         if ($currentpage == 1) {
                             $nextpage = $currentpage + 1;
-                            $prevpage = 10;
-                        } else if ($currentpage == 10) {
+                            $prevpage = $NumberOfPages;
+                        } else if ($currentpage == $NumberOfPages) {
                             $nextpage = 1;
                             $prevpage = $currentpage - 1;
                         } else {
                             $nextpage = $currentpage + 1;
                             $prevpage = $currentpage - 1;
                         }
-
+                        ////The dynamic pagging navigator 
                         echo '<li><a href="index.php?pageNumber=' . $prevpage . '">Previous</a></li>';
-
-                        if ($currentpage == 1) {
-                            echo '<li class="active"><a href="index.php?pageNumber=1">1</a></li>';
+                        for ($x = 1; $x <= $NumberOfPages; $x++) {
+                         if ($currentpage == $x) {
+                            echo '<li class="active"><a href="index.php?pageNumber='.$x.'">'.$x.'</a></li>';
                         } else
-                            echo '<li><a href="index.php?pageNumber=1">1</a></li>';
-
-                        if ($currentpage == 2) {
-                            echo '<li class="active"><a href="index.php?pageNumber=2">2</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=2">2</a></li>';
-
-                        if ($currentpage == 3) {
-                            echo '<li class="active"><a href="index.php?pageNumber=3">3</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=3">3</a></li>';
-
-                        if ($currentpage == 4) {
-                            echo '<li class="active"><a href="index.php?pageNumber=4">4</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=4">4</a></li>';
-
-                        if ($currentpage == 5) {
-                            echo '<li class="active"><a href="index.php?pageNumber=5">5</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=5">5</a></li>';
-
-                        if ($currentpage == 6) {
-                            echo '<li class="active"><a href="index.php?pageNumber=6">6</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=6">6</a></li>';
-
-                        if ($currentpage == 7) {
-                            echo '<li class="active"><a href="index.php?pageNumber=7">7</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=7">7</a></li>';
-
-                        if ($currentpage == 8) {
-                            echo '<li class="active"><a href="index.php?pageNumber=8">8</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=8">8</a></li>';
-
-                        if ($currentpage == 9) {
-                            echo '<li class="active"><a href="index.php?pageNumber=9">9</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=9">9</a></li>';
-
-                        if ($currentpage == 10) {
-                            echo '<li class="active"><a href="index.php?pageNumber=10">10</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber=10">10</a></li>';
-
+                            echo '<li><a href="index.php?pageNumber='.$x.'">'.$x.'</a></li>';
+                            } 
                         echo '<li><a href="index.php?pageNumber=' . $nextpage . '">Next</a></li>';
                         ?>
                     </ul>

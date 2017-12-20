@@ -94,7 +94,7 @@
                     <div class="col-sm-6 product-details">
                         <h4><?php echo $ProductName ?></h4>
                         <div class="price">
-                            $<?php echo $ProductPrice ?>
+                            SAR <?php echo $ProductPrice ?>
                         </div>
                         <h5>Quick Overview</h5>
                         <p>
@@ -116,12 +116,12 @@
                                     <?php
                                     if ((isset($_SESSION['login_user']))) {
                                         if(isset( $_SESSION["shopping_cart"][$_GET["product_id"]])){
-                                        echo '<a class="btn btn-success""><i class="icon-shopping-cart icon-white"></i> Added to Cart</a>';
+                                        echo '<a class="btn btn-success"><i class="icon-shopping-cart icon-white"></i> Added to Cart</a>';
                                         }else{
                                           echo '<a class="btn btn" href="page-product-details.php?product_id='.$ProductID .'&query_type=add_to_cart"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
                                         }
                                     } else {
-                                        echo '<a class="btn btn" onClick="Myalert()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
+                                        echo '<a class="btn btn" onClick="Myalert2()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
                                     }
                                     ?>
                                 </td>
@@ -170,6 +170,10 @@
             <script>
                 function Myalert() {
                     alert("Items already added to car");
+                }
+                ;
+                function Myalert2() {
+                    alert("You must log-in first");
                 }
                 ;
             </script>
