@@ -56,9 +56,9 @@ function idCallback(){
 			var message = xmlResponse.getElementsByTagName("message")[0].childNodes[0].nodeValue;
 			
 			if (code=="1"){
-				document.getElementById("idMessage").innerHTML =  id +'<br><span style="color:#50c878"><i class="glyphicon glyphicon-ok"></i>  '+message+'</span>';
+				document.getElementById("idMessage").innerHTML = '<span style="color:#50c878"><i class="glyphicon glyphicon-ok"></i>  '+message+'</span>';
 			}	else{
-				document.getElementById("idMessage").innerHTML =  id +'<br><span style="color:#8b0000 "><i class="glyphicon glyphicon-remove"></i>  '+message+'</span>';
+				document.getElementById("idMessage").innerHTML =  '<span style="color:#8b0000 "><i class="glyphicon glyphicon-remove"></i>  '+message+'</span>';
 			} 
 			
 			
@@ -75,29 +75,31 @@ function idCallback(){
 
 function validateForm(){
 	var valid = true;
-	
 	var studentId= document.getElementById("reg_studentid").value
-	
-	
 	var email= document.getElementById("reg_email").value;
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     if(!re.test(email.toLowerCase())){
     	valid = false;
     	alert("Incorrect e-mail");
     }
-     if(studentid.length != 9){
-    	valid = false;
-    	alert("Incorrect student ID");
-    } if(isNaN(studentId)){
-    	valid = false;
+    if(isNaN(studentId)){
     	alert("ID has to be a number");
+         return valid = false;
+         }
+     if(studentId.length != 9){
+        alert("Incorrect student ID");
+    	return valid = false;
+    	
+    } 
+    	return valid;
     }
+     
     
     
     
-	return valid;
+
 	
 	
-}
+
 

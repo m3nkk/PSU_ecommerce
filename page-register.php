@@ -103,7 +103,8 @@
 							<form role="form" method="post" action="register.php" onsubmit="return validateForm()">
 								<div class="form-group">
 		        				 	<label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-									<input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onchange="getIdRequest()" required>
+                                                                <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onkeyup="getIdRequest()" required>
+                                                                        <p id ="idMessage"></p> 
 									
 								</div>
 								<div class="form-group">
@@ -124,14 +125,13 @@
 									 
 								</div>
 								<div class="form-group">
-									<button type="submit" class="btn pull-right">Register</button>
+                                                                    <button type="submit" class="btn pull-right" onclick="">Register</button>
 									<div class="clearfix"></div>
 								</div>
 							</form>
 						</div>
 					</div>
 					<div></div>
-					<div class="col-sm-5">  <h2 id ="idMessage">...</h2>   </div>
 				</div>
 			</div>
 		</div>
