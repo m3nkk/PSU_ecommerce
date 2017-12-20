@@ -42,16 +42,21 @@
                                 </div>
                             </li>
                             <?php
+                            
+                            include "dbconnect.php";
+                            session_start();
+                            ?>
+                            
+                            
+                            
+                            <?php 
                             if((isset($_SESSION['login_user']))){
                             echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
                             echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
                             }else{
                              echo '<li> <a href="page-register.php"><b><span class="glyphicon glyphicon-new-window"></span> Register</b></a></li>';
                              echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
-                             
-                             include "dbconnect.php";
-                             session_start();
-                             
+                           
                           
                              if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
                                  $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
