@@ -66,7 +66,7 @@
 					<div class="col-md-12">
 						<!-- Action Buttons -->
 						<div class="pull-right">
-							<a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
+							<a href="" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
 							<a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> CHECK OUT</a>
 						</div>
 					</div>
@@ -130,8 +130,7 @@
 							<h6><i class="glyphicon glyphicon-plane"></i> Shippment options</h6>
 							<div class="input-append">
 								<select class="form-control input-sm">
-									<option value="1">Standard - FREE</option>
-									<option value="2">Next day delivery - $10.00</option>
+									<option value="1">Hand-Delivery</option>
 								</select>
 							</div>
 						</div>
@@ -155,7 +154,7 @@
 						</table>
 						<!-- Action Buttons -->
 						<div class="pull-right">
-							<a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
+							<a href="" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
 							<a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> CHECK OUT</a>
 						</div>
 					</div>
