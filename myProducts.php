@@ -48,6 +48,22 @@
                             }else{
                              echo '<li> <a href="page-register.php"><b><span class="glyphicon glyphicon-new-window"></span> Register</b></a></li>';
                              echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
+                             
+                             include "dbconnect.php";
+                             session_start();
+                             
+                          
+                             if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
+                                 $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
+                             }
+                             
+                             if (!isset($_SESSION["number_of_items"])) {
+                                 $_SESSION["number_of_items"] = 0;
+                             }
+                             
+                             
+                             
+                             
                             }
                             ?>
                         </ul>
@@ -73,7 +89,91 @@
             </div>
         </div>
 
-
+				<div class="row">
+					<div class="col-md-5">
+						<!-- Shopping Cart Items -->
+						<table class="shopping-cart">
+         <?php
+         
+              $studentID = $_SESSION["login_user"]["id"];
+              $sql = "select * from products where FR_studentid='".$studentID."' and status =1";
+              $result = $conn->query($sql);
+               while ($row = $result->fetch_assoc()) {
+                                                             
+            ?>
+							
+							<tr id="ProductRowID<?php echo $row["id"] ?>" >
+							
+								<td class="image"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
+								
+								<td>
+									<div class="cart-item-title"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a></div>
+                                                                     	<div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
+                                                                        <div class="feature">Condition: <b><?php echo $row["pCondition"]; ?></b></div>
+									
+								</td>
+								
+								<!-- Shopping Cart Item Price -->
+								<td class="price" id="ProductPriceID<?php echo $row["id"] ?>"><?php echo $row["price"] .'SAR' ?></td>
+								
+								
+                                                                      
+								</td>
+							</tr>
+                                                                                                 
+                                                        
+                                                         <?php }
+                                                        ?>
+						
+							
+						</table>
+						
+					</div>
+					
+					<div class="col-md-5">
+						<!-- Shopping Cart Items -->
+						<table class="shopping-cart">
+         <?php
+         
+              $studentID = $_SESSION["login_user"]["id"];
+              $sql = "select * from products where FR_studentid='".$studentID."' and status =2";
+              $result = $conn->query($sql);
+               while ($row = $result->fetch_assoc()) {
+                                                             
+            ?>
+							
+							<tr id="ProductRowID<?php echo $row["id"] ?>" >
+							
+								<td class="image"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
+								
+								<td>
+									<div class="cart-item-title"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a></div>
+                                                                     	<div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
+                                                                        <div class="feature">Condition: <b><?php echo $row["pCondition"]; ?></b></div>
+									
+								</td>
+								
+								<!-- Shopping Cart Item Price -->
+								<td class="price" id="ProductPriceID<?php echo $row["id"] ?>"><?php echo $row["price"] .'SAR' ?></td>
+								
+								
+                                                                      
+								</td>
+							</tr>
+                                                                                                 
+                                                        
+                                                         <?php }
+                                                        ?>
+						
+							
+						</table>
+						
+					</div>
+					
+					
+					
+					
+				</div>
 
 
         <!-- Footer -->

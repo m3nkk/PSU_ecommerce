@@ -39,9 +39,15 @@ echo'
                             <a href="sell.php">Sell</a>
                         </li>
                         <li>
-                            <a href="#">My Products</a>
-                        </li>
-                    </ul>
+                            <a href="myProducts.php">My Products</a>
+                        </li>';
+                        if ($_SESSION["login_user"]["role"]=='admin'){
+                            echo    '<li>
+                            <a href="myProducts.php">My Products</a>
+                                    </li>';
+                        }
+                        
+                   echo '</ul>
                 </nav>
             </div>
         </div>';
