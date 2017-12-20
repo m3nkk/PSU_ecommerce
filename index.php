@@ -16,17 +16,6 @@
         $_SESSION["number_of_items"] = 0;
     }
 
-    //if Add to Cart is pressed
-    if (isset($_GET["product_id"]) && isset($_GET["query_type"])) {
-        if ($_GET["query_type"] == 'add_to_cart') {
-            if (!isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
-                $_SESSION["shopping_cart"][$_GET["product_id"]] = array('product_id' => $_GET["product_id"], 'quantity' => 1);
-            } else {
-                $_SESSION["shopping_cart"][$_GET["product_id"]]["quantity"] ++;
-            }
-            $_SESSION["number_of_items"] ++;
-        }
-    }
 
     // items display based on pagenumber 
     if (!isset($_GET["pageNumber"])) {
@@ -196,14 +185,10 @@
                                     </div>
 
                                     <div class="actions">
-                                         <?php
-                                        if(isset($_SESSION['login_user'])){
-                                        echo "<a href=index.php?product_id=" . $row['id'] . "&query_type=add_to_cart&pageNumber=" . $_GET["pageNumber"] . " class='btn'><i class='icon-shopping-cart icon-white'></i> Add to Cart</a>";
-                                        }else{
-                                        echo "<a href=page-product-details.php?product_id=" . $row["id"] . " class='btn'><i class='icon-shopping-cart icon-white'></i> Product Info</a>";
-
-                                        }
-                                         ?>
+                                        
+                                       <a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"class='btn'><i class='icon-shopping-cart icon-white'></i> Product Info</a>
+                                        
+                                        
                                     </div>
                                 </div>
                             </div>

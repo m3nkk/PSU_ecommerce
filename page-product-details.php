@@ -13,28 +13,25 @@
         $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
     }
     if (isset($_GET["product_id"])) {
-            $sql = "select * from products where id='".$_GET["product_id"]."'";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            $ProductID = $row["id"];
-            $imglink = $row["image_link"];
-            $ProductPrice=$row["price"];
-            $ProductName=$row["name"];
-            $ProductDesc=$row["description"];
-            $ProductShortDesc=$row["short_description"];
-            $ProductCategory=$row["category"];
-            
-    }else{
+        $sql = "select * from products where id='" . $_GET["product_id"] . "'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $ProductID = $row["id"];
+        $imglink = $row["image_link"];
+        $ProductPrice = $row["price"];
+        $ProductName = $row["name"];
+        $ProductDesc = $row["description"];
+        $ProductShortDesc = $row["short_description"];
+        $ProductCategory = $row["category"];
+    } else {
         header("location: index.php");
     }
-     if ( isset($_GET["product_id"]) && isset($_GET["query_type"]) && isset($_GET["Quantity"]) ){
+    if (isset($_GET["product_id"]) && isset($_GET["query_type"])) {
         if ($_GET["query_type"] == 'add_to_cart') {
-            if (!isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
-                $_SESSION["shopping_cart"][$_GET["product_id"]] = array('product_id' => $_GET["product_id"], 'quantity' => $_GET["Quantity"]);
-            } else {
-                $_SESSION["shopping_cart"][$_GET["product_id"]]["quantity"] += $_GET["Quantity"];
+            if(!isset($_SESSION["shopping_cart"][$_GET["product_id"]])){
+            $_SESSION["shopping_cart"][$_GET["product_id"]] = array('product_id' => $_GET["product_id"], 'quantity' => 1);
+            $_SESSION["number_of_items"] ++;
             }
-            $_SESSION["number_of_items"] +=$_GET["Quantity"];
         }
     }
     ?>
@@ -78,12 +75,12 @@
                                 </div>
                             </li>
                             <?php
-                            if((isset($_SESSION['login_user']))){
-                            echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
-                            echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
-                            }else{
-                             echo '<li> <a href="page-register.php"><b><span class="glyphicon glyphicon-new-window"></span> Register</b></a></li>';
-                             echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
+                            if ((isset($_SESSION['login_user']))) {
+                                echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
+                                echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
+                            } else {
+                                echo '<li> <a href="page-register.php"><b><span class="glyphicon glyphicon-new-window"></span> Register</b></a></li>';
+                                echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
                             }
                             ?>
                         </ul>
@@ -128,26 +125,26 @@
                         <div class="product-image-large">
                             <img src="<?php echo $imglink ?>" alt="Item Name" style="height:78%;width:78%;">
                         </div>
-                        
+
                     </div>
                     <!-- End Product Image & Available Colors -->
                     <!-- Product Summary & Options -->
                     <div class="col-sm-6 product-details">
                         <h4><?php echo $ProductName ?></h4>
                         <div class="price">
-                           $<?php echo $ProductPrice ?>
+                            $<?php echo $ProductPrice ?>
                         </div>
                         <h5>Quick Overview</h5>
                         <p>
                             <?php echo $ProductShortDesc ?>
                         </p>
                         <table class="shop-item-selections">
-               
+
                             <!-- Quantity -->
                             <tr>
                                 <td><b>Quantity:</b></td>
                                 <td>
-                                    <input type="number" class="form-control input-sm input-micro" value="1" id="Quantity" min="1">
+                                    <input type="number" class="form-control input-sm input-micro" value="1" id="Quantity" min="1" disabled="">
                                 </td>
                             </tr>
                             <!-- Add to Cart Button -->
@@ -155,12 +152,15 @@
                                 <td>&nbsp;</td>
                                 <td>
                                     <?php
-                                     if((isset($_SESSION['login_user']))){
-                                      echo '<a class="btn btn" onclick="AddToCart()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
-                                     }else{
-                                       echo '<a class="btn btn" onClick="Myalert()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
-                                     }
-
+                                    if ((isset($_SESSION['login_user']))) {
+                                        if(isset( $_SESSION["shopping_cart"][$_GET["product_id"]])){
+                                        echo '<a class="btn btn-success""><i class="icon-shopping-cart icon-white"></i> In Cart</a>';
+                                        }else{
+                                          echo '<a class="btn btn" onclick="AddToCart()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
+                                        }
+                                    } else {
+                                        echo '<a class="btn btn" onClick="Myalert()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
+                                    }
                                     ?>
                                 </td>
                             </tr>
@@ -181,75 +181,75 @@
                                 <div class="tab-pane active" id="tab1">
                                     <h4>Product Description</h4>
                                     <p>
-                                         <?php echo $ProductDesc ?>
+<?php echo $ProductDesc ?>
                                     </p>
-                                    
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- End Full Description & Specification -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-footer col-md-3 col-xs-6">
-                        <h3>Navigate</h3>
-                        <ul class="no-list-style footer-navigate-section">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-footer col-md-4 col-xs-6">
-                        <h3>Contacts</h3>
-                        <p class="contact-us-details">
-                            <b>Address:</b> Riyadh, Saudi Arabia<br/>
-                            <b>Phone:</b> +966 55 2020770<br/>
-                            <b>Email:</b> <a href="mailto:m3n991@gmail.com">m3n991@gmail.com</a>
-                        </p>
-                    </div>
-                    <div class="col-footer col-md-2 col-xs-6">
-                        <h3>Stay Connected</h3>
-                        <ul class="footer-stay-connected no-list-style">
-                            <li><a href="#" class="facebook"></a></li>
-                            <li><a href="#" class="twitter"></a></li>
-                            <li><a href="#" class="googleplus"></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="footer-copyright">&copy; PSU Events, Web Project</div>
+                        <!-- End Full Description & Specification -->
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Javascripts -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-        <script src="js/jquery.fitvids.js"></script>
-        <script src="js/jquery.sequence-min.js"></script>
-        <script src="js/jquery.bxslider.js"></script>
-        <script src="js/main-menu.js"></script>
-        <script src="js/template.js"></script>
-        <script>
-            function AddToCart() {
-                 var regex=/^[a-zA-Z]+$/;
-                 var Quantity = document.getElementById("Quantity").value;
-                if((Quantity !=0)&&(!Quantity.match(regex))) window.location.href = "page-product-details.php?product_id="+"<?php echo $ProductID ?>"+"&Quantity="+document.getElementById("Quantity").value+"&query_type=add_to_cart";
-                else alert("Enter a number other than 0");
-    }
-    function Myalert(){ alert("You have to Log-in first")};
-        </script>
+            <!-- Footer -->
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-footer col-md-3 col-xs-6">
+                            <h3>Navigate</h3>
+                            <ul class="no-list-style footer-navigate-section">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-footer col-md-4 col-xs-6">
+                            <h3>Contacts</h3>
+                            <p class="contact-us-details">
+                                <b>Address:</b> Riyadh, Saudi Arabia<br/>
+                                <b>Phone:</b> +966 55 2020770<br/>
+                                <b>Email:</b> <a href="mailto:m3n991@gmail.com">m3n991@gmail.com</a>
+                            </p>
+                        </div>
+                        <div class="col-footer col-md-2 col-xs-6">
+                            <h3>Stay Connected</h3>
+                            <ul class="footer-stay-connected no-list-style">
+                                <li><a href="#" class="facebook"></a></li>
+                                <li><a href="#" class="twitter"></a></li>
+                                <li><a href="#" class="googleplus"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="footer-copyright">&copy; PSU Events, Web Project</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Javascripts -->
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+            <script src="js/jquery.fitvids.js"></script>
+            <script src="js/jquery.sequence-min.js"></script>
+            <script src="js/jquery.bxslider.js"></script>
+            <script src="js/main-menu.js"></script>
+            <script src="js/template.js"></script>
+            <script>
+                function AddToCart() {
+                        window.location.href = "page-product-details.php?product_id=" + "<?php echo $ProductID ?>" + "&query_type=add_to_cart";
+                }
+                function Myalert() {
+                    alert("You have to Log-in first")
+                }
+                ;
+            </script>
     </body>
 </html>

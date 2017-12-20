@@ -127,7 +127,7 @@
                                                                 $total += $quantity * $row["price"];
                                                                 ?>
 							<!-- Shopping Cart Item -->
-							<tr>
+							<tr id="ProductID<?php echo $row["id"] ?>" >
 								<!-- Shopping Cart Item Image -->
 								<td class="image"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
 								<!-- Shopping Cart Item Description & Features -->
@@ -145,8 +145,8 @@
 								<td class="price"><?php echo $row["price"]*$quantity .'SAR' ?></td>
 								<!-- Shopping Cart Item Actions -->
 								<td class="actions">
-									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-pencil"></i></a>
-									<a href="#" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-trash"></i></a>
+									<a class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                                        <a onclick="RemoveProduct(<?php echo $row["id"] ?>)" class="btn btn-xs btn-grey"> <i class="glyphicon glyphicon-trash"></i></a>
 								</td>
 							</tr>
                                                                                                  
@@ -261,6 +261,10 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
-
+        <script> 
+            function RemoveProduct(v){
+                alert(v);
+            }
+        </script>
     </body>
 </html>
