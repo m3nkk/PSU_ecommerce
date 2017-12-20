@@ -14,7 +14,7 @@
         }
         $sql="";
         
-        if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"])) {
+        if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"]) && ($_SESSION["number_of_items"]!=0)) {
             $sql = "select * from products where ";
             foreach ($_SESSION["shopping_cart"] as $Product){
                 $sql = $sql . " id = " . $Product['product_id'] . " or ";
@@ -80,30 +80,25 @@
                                                         if($sql!=""){
                                                         $result = $conn->query($sql);
                                                             while ($row = $result->fetch_assoc()) {
-                                                                $quantity = $_SESSION["shopping_cart"][$row["id"]]["quantity"];
-                                                                $total += $quantity * $row["price"];
+                                                                $total +=  $row["price"];
                                                                 ?>
 							<!-- Shopping Cart Item -->
-							<tr id="ProductID<?php echo $row["id"] ?>" >
+							<tr id="ProductRowID<?php echo $row["id"] ?>" >
 								<!-- Shopping Cart Item Image -->
 								<td class="image"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td>
 									<div class="cart-item-title"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a></div>
                                                                         <div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
-
-									
+                                                                        <div class="feature">Condition: <b><?php echo $row["pCondition"]; ?></b></div>
+									<div class="feature">Seller ID: <b><?php echo $row["FR_studentid"]; ?></b></div>
 								</td>
-								<!-- Shopping Cart Item Quantity -->
-								<td class="quantity">
-                                                                    <input class="form-control input-sm input-micro" type="number" min="1" value="<?php echo $quantity ?>">
-								</td>
+								
 								<!-- Shopping Cart Item Price -->
-								<td class="price"><?php echo $row["price"]*$quantity .'SAR' ?></td>
+								<td class="price" id="ProductPriceID<?php echo $row["id"] ?>"><?php echo $row["price"] .'SAR' ?></td>
 								<!-- Shopping Cart Item Actions -->
 								<td class="actions">
-									<a class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-pencil"></i></a>
-                                                                        <a onclick="RemoveProduct(<?php echo $row["id"] ?>)" class="btn btn-xs btn-grey"> <i class="glyphicon glyphicon-trash"></i></a>
+                                                                        <a onclick="RemoveFromCartRequst(<?php echo $row["id"];echo ",".$_SESSION["number_of_items"]; ?>)" class="btn btn-xs btn-grey"> <i class="glyphicon glyphicon-trash"></i></a>
 								</td>
 							</tr>
                                                                                                  
@@ -155,7 +150,7 @@
 							</tr>
 							<tr class="cart-grand-total">
 								<td><b>Total</b></td>
-								<td><b><?php echo $total ?> SAR</b></td>
+								<td id="Total"><b><?php echo $total ?> SAR</b></td>
 							</tr>
 						</table>
 						<!-- Action Buttons -->
@@ -181,10 +176,6 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
-        <script> 
-            function RemoveProduct(v){
-                alert(v);
-            }
-        </script>
+        <script src="shopping-Cart.js"> </script>
     </body>
 </html>
