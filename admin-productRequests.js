@@ -22,11 +22,10 @@ function getXMLHTTPRequest(){
 	}
 }
 
+
 function acceptRequest(productId){
 
 	var rowId ="ProductRowID"+productId;
-	//alert(productId);
-	//alert(rowId);
 	document.getElementById(rowId).remove();
 
 
@@ -48,10 +47,20 @@ function acceptRequestCallback(){
 	if (xmlHttp.readyState == 4){
 		if (xmlHttp.status == 200){
 
+			
 
 
+			var xmlResponse = xmlHttp.responseXML;
+			var time = xmlResponse.getElementsByTagName("time")[0].childNodes[0].nodeValue;
+			var productId = xmlResponse.getElementsByTagName("productId")[0].childNodes[0].nodeValue;
 
-			var xmlResponse = xmlHttp.responseText;
+			
+			 document.getElementById("transcript").innerHTML +='<b> <tr class = "success" id="transcript'+productId+'"><td>Accepted</td> <td>'+productId+'</td> <td>'+time+'</td> <td><button type="button" class=" btn btn-sm" onclick="revertAction('+productId+')"> Revert </button></td></tr> </b>';
+			
+			
+				
+			
+		
 
 
 
@@ -72,8 +81,6 @@ function acceptRequestCallback(){
 function rejectRequest(productId){
 
 	var rowId ="ProductRowID"+productId;
-	//alert(productId);
-	//alert(rowId);
 	document.getElementById(rowId).remove();
 
 
@@ -98,8 +105,13 @@ function rejectRequestCallback(){
 
 
 
-			var xmlResponse = xmlHttp.responseText;
+			var xmlResponse = xmlHttp.responseXML;
+			var time = xmlResponse.getElementsByTagName("time")[0].childNodes[0].nodeValue;
+			var productId = xmlResponse.getElementsByTagName("productId")[0].childNodes[0].nodeValue;
 
+			
+			 document.getElementById("transcript").innerHTML +='<b> <tr class = "danger" id="transcript'+productId+'"> <td>Rejected</td> <td>'+productId+'</td> <td>'+time+'</td> <td><button type="button" class=" btn btn-sm" onclick="revertAction('+productId+')"> Revert </button></td></tr> </b>';
+			
 
 
 
@@ -111,6 +123,52 @@ function rejectRequestCallback(){
 	}
 
 
+}
+
+function revertAction(productId){
+	
+	document.getElementById("transcript"+productId).remove();
+	
+	if ((xmlHttp.readyState == 0)||  (xmlHttp.readyState == 4)){
+
+		xmlHttp.open("post", "admin-revertAction.php?", true);
+		xmlHttp.onreadystatechange=revertActionCallback;
+		xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlHttp.send("productId="+productId);
+	}
+	
+	
+}
+
+
+function revertActionCallback(){
+	
+
+	if (xmlHttp.readyState == 4){
+		if (xmlHttp.status == 200){
+
+
+
+
+			var xmlResponse = xmlHttp.responseText;
+			document.getElementById("pendingRequests").innerHTML += xmlResponse;
+			
+
+			
+			
+			
+
+
+
+
+
+
+		}	
+
+	}
+
+	
+	
 }
 
 

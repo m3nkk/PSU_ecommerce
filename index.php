@@ -20,9 +20,9 @@
     // items display based on pagenumber 
     if (!isset($_GET["pageNumber"])) {
         $_GET["pageNumber"] = 1;
-        $sql = "SELECT * FROM products limit 0, 6";
+        $sql = "SELECT * FROM products limit 0, 6";  //where status = 2; INCLUDE LATER
     } else {
-        $sql = "SELECT * FROM products limit " . (intval($_GET["pageNumber"]) - 1) * 6 . ", 6";
+        $sql = "SELECT * FROM products limit " . (intval($_GET["pageNumber"]) - 1) * 6 . ", 6"; //where status = 2; INCLUDE LATER
     }
     $result = $conn->query($sql);
     ?>
@@ -158,7 +158,7 @@
                 <div class="pagination-wrapper ">
                     <ul class="pagination pagination-lg">
                         <?php
-                        $sql = "SELECT count(*) FROM products";//where state =1; (TO ADD LATER)
+                        $sql = "SELECT count(*) FROM products";
                         $result = $conn->query($sql);
                         $row = $result->fetch_assoc();
                         
