@@ -9,11 +9,11 @@
     if (!isset($_SESSION["number_of_items"])) {
         $_SESSION["number_of_items"] = 0;
     }
-    
+
     if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
         $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
     }
-    
+
     if (isset($_GET["product_id"])) {
         $sql = "select * from products where id='" . $_GET["product_id"] . "'";
         $result = $conn->query($sql);
@@ -28,13 +28,13 @@
     } else {
         header("location: index.php");
     }
-    
+
     if (isset($_GET["product_id"]) && isset($_GET["query_type"])) {
         if ($_GET["query_type"] == 'add_to_cart') {
-            if(!isset($_SESSION["shopping_cart"][$_GET["product_id"]])){
-            $_SESSION["shopping_cart"][$_GET["product_id"]] = array('product_id' => $_GET["product_id"], 'quantity' => 1);
-            $_SESSION["number_of_items"] ++;
-            }else{
+            if (!isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
+                $_SESSION["shopping_cart"][$_GET["product_id"]] = array('product_id' => $_GET["product_id"], 'quantity' => 1);
+                $_SESSION["number_of_items"] ++;
+            } else {
                 echo '<script>alert("Items already added to car")</script>';
             }
         }
@@ -66,7 +66,7 @@
 
 
         <!-- Navigation & Logo-->
-        <?php include 'Pages-Header.php';?>
+        <?php include 'Pages-Header.php'; ?>
 
         <!-- Page Title -->
         <div class="section section-breadcrumbs">
@@ -102,28 +102,51 @@
                         </p>
                         <table class="shop-item-selections">
 
-                            <!-- Quantity -->
+                            <?php
+                            $sql2 = "select * from users where studentid='" . $row["FR_studentid"] . "'";
+                            $result2 = $conn->query($sql2);
+                            $row2 = $result2->fetch_assoc();
+                            $fullName = $row2['firstname'] . " " . $row2['lastname'];
+                            ?>
+
+                            
+                            <!-- Category -->
                             <tr>
-                                <td><b>Quantity:</b></td>
-                                <td>
-                                    <input type="number" class="form-control input-sm input-micro" value="1" id="Quantity" min="1" disabled="">
-                                </td>
+                            <td colspan="2"><b>Category: </b> <?php echo $ProductCategory; ?><br></td>
+                               
                             </tr>
+                            <!-- Condition -->
+                            <tr>
+                             <td colspan="2">   <b>Condition: </b> <?php echo $row["pCondition"]; ?><br></td>
+                               
+                            </tr>
+                            <!-- Seller Name -->
+                            <tr>
+                              <td colspan="2"><b>Seller Name: </b><?php echo $fullName ; ?><br></td>
+                            </tr>
+                            
+                             <!-- Seller ID -->
+                            <tr>
+                               <td colspan="2"> <b>Seller ID: </b><?php echo $row["FR_studentid"]; ?><br></td>
+                               
+                            </tr>
+                            
                             <!-- Add to Cart Button -->
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>
                                     <?php
                                     if ((isset($_SESSION['login_user']))) {
-                                        if(isset( $_SESSION["shopping_cart"][$_GET["product_id"]])){
-                                        echo '<a class="btn btn-success"><i class="icon-shopping-cart icon-white"></i> Added to Cart</a>';
-                                        }else{
-                                          echo '<a class="btn btn" href="page-product-details.php?product_id='.$ProductID .'&query_type=add_to_cart"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
+                                        if (isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
+                                            echo '<button class="btn-success"><i class="icon-shopping-cart icon-white"></i> Added to Cart</button>';
+                                        } else {
+                                            echo '<button type="button" class="btn btn" onclick="AddtoCart()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</button>';
                                         }
                                     } else {
-                                        echo '<a class="btn btn" onClick="Myalert2()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>';
+                                        echo '<button type="button" class="btn btn" onClick="Myalert2()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</button>';
                                     }
                                     ?>
+                                    
                                 </td>
                             </tr>
                         </table>
@@ -143,7 +166,7 @@
                                 <div class="tab-pane active" id="tab1">
                                     <h4>Product Description</h4>
                                     <p>
-                                    <?php echo $ProductDesc ?>
+                                        <?php echo $ProductDesc ?>
                                     </p>
 
                                 </div>
@@ -155,7 +178,7 @@
             </div>
 
             <!-- Footer -->
-            <?php include 'Pages-Footer.php';?>
+            <?php include 'Pages-Footer.php'; ?>
 
             <!-- Javascripts -->
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -174,6 +197,10 @@
                 ;
                 function Myalert2() {
                     alert("You must log-in first");
+                }
+                function AddtoCart(){
+                window.location.href="page-product-details.php?product_id="+ <?php echo $ProductID ?> +"&query_type=add_to_cart";
+
                 }
                 ;
             </script>

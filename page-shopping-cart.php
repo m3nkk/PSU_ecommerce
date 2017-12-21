@@ -88,10 +88,18 @@
 								<td class="image"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["image_link"]; ?>" alt="Item Name"></a></td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td>
+                                                                        <?php
+                                                                        $sql2="select * from users where studentid='".$row["FR_studentid"]."'";
+                                                                        $result2 = $conn->query($sql2);
+                                                                        $row2 = $result2->fetch_assoc();
+                                                                        $fullName = $row2['firstname']." ".$row2['lastname'];
+                                                                        ?>
 									<div class="cart-item-title"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a></div>
                                                                         <div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
                                                                         <div class="feature">Condition: <b><?php echo $row["pCondition"]; ?></b></div>
-									<div class="feature">Seller ID: <b><?php echo $row["FR_studentid"]; ?></b></div>
+									<div class="feature">Seller Name (ID): <b><?php echo $fullName.' ('.$row["FR_studentid"].')'; ?></b></div>
+                                                                        <div class="feature">Seller Email: <b><?php echo $row2["email"]; ?></b></div>
+                                                                        <div class="feature">Seller Number: <b>+<?php echo $row2["number"]; ?></b></div>
 								</td>
 								
 								<!-- Shopping Cart Item Price -->
@@ -139,10 +147,7 @@
 					<!-- Shopping Cart Totals -->
 					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
 						<table class="cart-totals">
-							<tr>
-								<td><b>Shipping</b></td>
-								<td>Free</td>
-							</tr>
+							
 							<tr>
 								<td><b>Discount</b></td>
 								<td>- 0 SAR</td>
