@@ -41,12 +41,13 @@ echo'
                         <li>
                             <a href="myProducts.php">My Products</a>
                         </li>';
+if ((isset($_SESSION['login_user']))) {
                         if ($_SESSION["login_user"]["role"]=='admin'){
                             echo    '<li>
                             <a href="admin-ProductRequests.php">Product Requests</a>
                                     </li>';
                         }
-                        
+}
                    echo '</ul>
                 </nav>
             </div>
