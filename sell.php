@@ -74,9 +74,9 @@
                                 <div class="form-group">
                                     <label for="product-condition"><i class="icon-lock"></i> <b>Condition</b></label>
                                     <select class="form-control" id="condition" name="condition">
-        								<option value="new">New</option>
-        								<option value="used">Used</option>
-							   </select>
+            								<option value="new">New</option>
+            								<option value="used">Used</option>
+							   	   </select>
                                 </div>
                                 <div class="form-group">
                                     <input type="radio" name="category" value="Book" checked> Book<br>
