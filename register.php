@@ -7,9 +7,10 @@ $password = $_POST['reg_password'];
 $firstName = $_POST['reg_firstName'];
 $lastName = $_POST['reg_lastName'];
 $email = $_POST['reg_email'];
+$phone = $_POST['reg_phone'];
 
 
-$sql = "INSERT INTO users VALUES ('$studentid','$firstName','$lastName','student','$email','$password')";
+$sql = "INSERT INTO users VALUES ('$studentid','$firstName','$lastName','student','$email','$password','$phone')";
 
 $result = mysqli_query($conn, $sql);
 // if successfully insert data into database, displays message "Successful".
