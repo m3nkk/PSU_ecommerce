@@ -130,7 +130,7 @@
                                             echo '<td id="Cartbutton"><button type="button" class="btn btn" onclick="AddtoCartRequst(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button></td>';
                                         }
                                     } else {
-                                        echo '<td> <button type="button" class="btn btn" onClick="Myalert()"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button> </td>';
+                                        echo '<td> <button type="button" class="btn btn" onClick="NotLogInAlert()"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button> </td>';
                                     }
                                     ?>
                                 </td>

@@ -114,6 +114,6 @@ function ButtonBack() {
     document.getElementById("Cartbutton").innerHTML = Oldbutton;
     }
 }
-function Myalert() {
+function NotLogInAlert() {
     alert("You must log-in first");
 }

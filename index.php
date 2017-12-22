@@ -158,12 +158,13 @@
                 <div class="pagination-wrapper ">
                     <ul class="pagination pagination-lg">
                         <?php
-                        $sql = "SELECT count(*) FROM products";
-                        $result = $conn->query($sql);
-                        $row = $result->fetch_assoc();
+                        $sql2 = "SELECT count(*) FROM products";
+                        $result2 = $conn->query($sql2);
+                        if ($result2->num_rows > 0) {
+                        $row2 = $result2->fetch_assoc();
                         
                         //this to get number of pages based on the displayed products number
-                        $NumberOfPages = ceil($row['count(*)']/6);
+                        $NumberOfPages = ceil($row2['count(*)']/6);
                         
                         //to get prev/next pages
                         $currentpage = $_GET["pageNumber"];
@@ -186,6 +187,7 @@
                             echo '<li><a href="index.php?pageNumber='.$x.'">'.$x.'</a></li>';
                             } 
                         echo '<li><a href="index.php?pageNumber=' . $nextpage . '">Next</a></li>';
+                        }
                         ?>
                     </ul>
                 </div>

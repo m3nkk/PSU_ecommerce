@@ -56,7 +56,7 @@ if (isset($_SESSION["login_user"])) {
             <div class="row"> 
                 <div class="col-sm-7">
                     <div class="basic-login">
-                        <form role="form" role="form" method="POST" action="login.php">
+                        <form role="form" method="POST" action="login.php">
                             <div class="form-group">
                                 <label for="login-username"><i class="icon-user"></i> <b>Student ID</b></label>
                                 <input class="form-control" id="login-username" type="text" placeholder="" name="username">
@@ -69,7 +69,7 @@ if (isset($_SESSION["login_user"])) {
                                 <label class="checkbox">
                                     <input type="checkbox" name="RememberMe"> Remember me
                                 </label>
-                                <a href="page-password-reset.html" class="forgot-password">Forgot password?</a><br><br>
+                                <a href="page-forget-password.php" class="forgot-password">Forgot password?</a><br><br>
                                 <span>Not a member? &nbsp;&nbsp;&nbsp;&nbsp;</span><a href="page-register.php">Register here</a>
                                 <button type="submit" class="btn pull-right">Login</button>
                                 <div class="clearfix"></div>
