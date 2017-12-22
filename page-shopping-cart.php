@@ -3,26 +3,6 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-        <?php 
-        include "dbconnect.php";
-        session_start();
-        if (!isset($_SESSION["login_user"])) {
-            header("location: page-login.php");
-        }
-        if (!isset($_SESSION["number_of_items"])) {
-        $_SESSION["number_of_items"] = 0;
-        }
-        $sql="";
-        
-        if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"]) && ($_SESSION["number_of_items"]!=0)) {
-            $sql = "select * from products where ";
-            foreach ($_SESSION["shopping_cart"] as $Product){
-                $sql = $sql . " id = " . $Product['product_id'] . " or ";
-                }
-         $sql =chop($sql," or ");
-        }
-        
-        ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -44,7 +24,20 @@
     </head>
     <body>
         <!-- Navigation & Logo-->
-        <?php include 'Pages-Header.php';?>
+        <?php include 'Pages-Header.php';
+         if (!isset($_SESSION["login_user"])) {
+            header("location: page-login.php");
+        }
+        
+        $sql="";
+        if (isset($_SESSION["number_of_items"]) && isset($_SESSION["shopping_cart"]) && ($_SESSION["number_of_items"]!=0)) {
+            $sql = "select * from products where ";
+            foreach ($_SESSION["shopping_cart"] as $Product){
+                $sql = $sql . " id = " . $Product['product_id'] . " or ";
+                }
+         $sql =chop($sql," or ");
+        }
+        ?>
 
         
 

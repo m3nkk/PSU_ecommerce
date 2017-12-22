@@ -1,4 +1,15 @@
 <?php
+include "dbconnect.php";
+session_start();
+    
+    //check if cookie exist
+    if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
+        $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
+    }
+    
+    if (!isset($_SESSION["number_of_items"])) {
+        $_SESSION["number_of_items"] = 0;
+    }
         
 echo '<div class="mainmenu-wrapper">
             <div class="container">

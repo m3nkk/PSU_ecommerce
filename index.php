@@ -3,29 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <?php
-    include "dbconnect.php";
-    session_start();
-    
-    //check if cookie exist
-    if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
-        $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
-    }
-    
-    if (!isset($_SESSION["number_of_items"])) {
-        $_SESSION["number_of_items"] = 0;
-    }
 
-
-    // items display based on pagenumber 
-    if (!isset($_GET["pageNumber"])) {
-        $_GET["pageNumber"] = 1;
-        $sql = "SELECT * FROM products limit 0, 6";  //where status = 2; INCLUDE LATER
-    } else {
-        $sql = "SELECT * FROM products limit " . (intval($_GET["pageNumber"]) - 1) * 6 . ", 6"; //where status = 2; INCLUDE LATER
-    }
-    $result = $conn->query($sql);
-    ?>
     <head>
 
         <style>
@@ -60,7 +38,17 @@
         <![endif]-->
 
         <!-- Navigation & Logo-->
-        <?php include 'Pages-Header.php';?>
+        <?php
+        include 'Pages-Header.php';
+        // items display based on pagenumber 
+        if (!isset($_GET["pageNumber"])) {
+            $_GET["pageNumber"] = 1;
+            $sql = "SELECT * FROM products limit 0, 6";  //where status = 2; INCLUDE LATER
+        } else {
+            $sql = "SELECT * FROM products limit " . (intval($_GET["pageNumber"]) - 1) * 6 . ", 6"; //where status = 2; INCLUDE LATER
+        }
+        $result = $conn->query($sql);
+        ?>
 
         <!-- Homepage Slider -->
         <div class="homepage-slider">
@@ -142,10 +130,10 @@
                                     </div>
 
                                     <div class="actions">
-                                        
-                                       <a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"class='btn'><i class='icon-shopping-cart icon-white'></i> Product Info</a>
-                                        
-                                        
+
+                                        <a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"class='btn'><i class='icon-shopping-cart icon-white'></i> Product Info</a>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -161,32 +149,32 @@
                         $sql2 = "SELECT count(*) FROM products";
                         $result2 = $conn->query($sql2);
                         if ($result2->num_rows > 0) {
-                        $row2 = $result2->fetch_assoc();
-                        
-                        //this to get number of pages based on the displayed products number
-                        $NumberOfPages = ceil($row2['count(*)']/6);
-                        
-                        //to get prev/next pages
-                        $currentpage = $_GET["pageNumber"];
-                        if ($currentpage == 1) {
-                            $nextpage = $currentpage + 1;
-                            $prevpage = $NumberOfPages;
-                        } else if ($currentpage == $NumberOfPages) {
-                            $nextpage = 1;
-                            $prevpage = $currentpage - 1;
-                        } else {
-                            $nextpage = $currentpage + 1;
-                            $prevpage = $currentpage - 1;
-                        }
-                        ////The dynamic pagging navigator 
-                        echo '<li><a href="index.php?pageNumber=' . $prevpage . '">Previous</a></li>';
-                        for ($x = 1; $x <= $NumberOfPages; $x++) {
-                         if ($currentpage == $x) {
-                            echo '<li class="active"><a href="index.php?pageNumber='.$x.'">'.$x.'</a></li>';
-                        } else
-                            echo '<li><a href="index.php?pageNumber='.$x.'">'.$x.'</a></li>';
-                            } 
-                        echo '<li><a href="index.php?pageNumber=' . $nextpage . '">Next</a></li>';
+                            $row2 = $result2->fetch_assoc();
+
+                            //this to get number of pages based on the displayed products number
+                            $NumberOfPages = ceil($row2['count(*)'] / 6);
+
+                            //to get prev/next pages
+                            $currentpage = $_GET["pageNumber"];
+                            if ($currentpage == 1) {
+                                $nextpage = $currentpage + 1;
+                                $prevpage = $NumberOfPages;
+                            } else if ($currentpage == $NumberOfPages) {
+                                $nextpage = 1;
+                                $prevpage = $currentpage - 1;
+                            } else {
+                                $nextpage = $currentpage + 1;
+                                $prevpage = $currentpage - 1;
+                            }
+                            ////The dynamic pagging navigator 
+                            echo '<li><a href="index.php?pageNumber=' . $prevpage . '">Previous</a></li>';
+                            for ($x = 1; $x <= $NumberOfPages; $x++) {
+                                if ($currentpage == $x) {
+                                    echo '<li class="active"><a href="index.php?pageNumber=' . $x . '">' . $x . '</a></li>';
+                                } else
+                                    echo '<li><a href="index.php?pageNumber=' . $x . '">' . $x . '</a></li>';
+                            }
+                            echo '<li><a href="index.php?pageNumber=' . $nextpage . '">Next</a></li>';
                         }
                         ?>
                     </ul>
@@ -196,7 +184,7 @@
 
 
         <!-- Footer -->
-        <?php include 'Pages-Footer.php';?>
+        <?php include 'Pages-Footer.php'; ?>
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>

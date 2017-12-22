@@ -8,7 +8,6 @@
     if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
         $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
     }
-
     if (isset($_SESSION["login_user"])) {
         header("location: index.php");
     }
