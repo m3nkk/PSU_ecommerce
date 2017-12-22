@@ -57,11 +57,7 @@
 				<div class="row">
                                     
 					<div class="col-md-12">
-						<!-- Action Buttons -->
-						<div class="pull-right">
-							<a href="" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
-							<a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> CHECK OUT</a>
-						</div>
+						
 					</div>
 				</div>
 				<div class="row">
@@ -105,7 +101,7 @@
                                                                                                  
                                                         
                                                          <?php }
-                                                         }?>
+                                                         } ?>
 							<!-- End Shopping Cart Item -->
 							
 						</table>
@@ -115,26 +111,11 @@
 				<div class="row">
 					<!-- Promotion Code -->
 					<div class="col-md-4  col-md-offset-0 col-sm-6 col-sm-offset-6">
-						<div class="cart-promo-code">
-							<h6><i class="glyphicon glyphicon-gift"></i> Have a promotion code?</h6>
-							<div class="input-group">
-								<input class="form-control input-sm" id="appendedInputButton" type="text" value="">
-								<span class="input-group-btn">
-									<button class="btn btn-sm btn-grey" type="button">Apply</button>
-								</span>
-							</div>
-						</div>
+						
 					</div>
 					<!-- Shipment Options -->
 					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
-						<div class="cart-shippment-options">
-							<h6><i class="glyphicon glyphicon-plane"></i> Shippment options</h6>
-							<div class="input-append">
-								<select class="form-control input-sm">
-									<option value="1">Hand-Delivery</option>
-								</select>
-							</div>
-						</div>
+						
 					</div>
 					
 					<!-- Shopping Cart Totals -->
@@ -153,7 +134,6 @@
 						<!-- Action Buttons -->
 						<div class="pull-right">
 							<a href="" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
-							<a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> CHECK OUT</a>
 						</div>
 					</div>
 				</div>
