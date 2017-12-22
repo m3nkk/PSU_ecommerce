@@ -42,7 +42,7 @@ if (isset($_POST["id"])){
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
         //echo '<message> "<i class="glyphicon glyphicon-check"></i>" </message>';
-        echo '<message> is available </message>';
+        echo '<message> ID is available </message>';
         echo '<code>1</code>';
         
         echo '</response>';

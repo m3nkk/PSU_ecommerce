@@ -57,10 +57,10 @@
 				<div class="row">
 					<div class="col-sm-7">
 						<div class="basic-login">
-							<form role="form" method="post" action="register.php" onsubmit="return validateForm()">
+							<form role="form" method="post" action="register.php">
 								<div class="form-group">
 		        				 	<label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-                                                                <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onkeyup="getIdRequest()" required>
+                                                                <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onchange="getIdRequest()" required>
                                                                         <p id ="idMessage"></p> 
 									
 								</div>
@@ -78,7 +78,7 @@
 								</div>
 								<div class="form-group">
 		        				 	<label for="register-password2"><i class="icon-lock"></i> <b>Email</b></label>
-									<input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="" required>
+									<input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="" disabled>
 									 
 								</div>
 								<div class="form-group">
