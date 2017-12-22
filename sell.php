@@ -30,7 +30,7 @@
         <!-- Navigation & Logo-->
         <?php include 'Pages-Header.php';
         if (!isset($_SESSION["login_user"])) {
-        header("location: page-login.php");
+            header("location: page-login.php");
         }
         ?>
 
@@ -68,8 +68,15 @@
                                     <input class="form-control" id="prod_price" name="prod_price" type="number" step="0.01" placeholder="" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="product-price"><i class="icon-lock"></i> <b>Image</b></label>
+                                    <label for="product-Image"><i class="icon-lock"></i> <b>Image</b></label>
                                     <input class="form-control" type="file" name="image">
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-condition"><i class="icon-lock"></i> <b>Condition</b></label>
+                                    <select class="form-control" id="condition" name="condition">
+        								<option value="new">New</option>
+        								<option value="used">Used</option>
+							   </select>
                                 </div>
                                 <div class="form-group">
                                     <input type="radio" name="category" value="Book" checked> Book<br>
