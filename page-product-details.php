@@ -28,17 +28,6 @@
     } else {
         header("location: index.php");
     }
-
-    if (isset($_GET["product_id"]) && isset($_GET["query_type"])) {
-        if ($_GET["query_type"] == 'add_to_cart') {
-            if (!isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
-                $_SESSION["shopping_cart"][$_GET["product_id"]] = array('product_id' => $_GET["product_id"], 'quantity' => 1);
-                $_SESSION["number_of_items"] ++;
-            } else {
-                echo '<script>alert("Items already added to car")</script>';
-            }
-        }
-    }
     ?>
     <head>
         <meta charset="utf-8">
@@ -108,45 +97,42 @@
                             $row2 = $result2->fetch_assoc();
                             $fullName = $row2['firstname'] . " " . $row2['lastname'];
                             ?>
-
-                            
                             <!-- Category -->
                             <tr>
-                            <td colspan="2"><b>Category: </b> <?php echo $ProductCategory; ?><br></td>
-                               
+                                <td colspan="2"><b>Category: </b> <?php echo $ProductCategory; ?><br></td>
+
                             </tr>
                             <!-- Condition -->
                             <tr>
-                             <td colspan="2">   <b>Condition: </b> <?php echo $row["pCondition"]; ?><br></td>
-                               
+                                <td colspan="2">   <b>Condition: </b> <?php echo $row["pCondition"]; ?><br></td>
+
                             </tr>
                             <!-- Seller Name -->
                             <tr>
-                              <td colspan="2"><b>Seller Name: </b><?php echo $fullName ; ?><br></td>
+                                <td colspan="2"><b>Seller Name: </b><?php echo $fullName; ?><br></td>
                             </tr>
-                            
-                             <!-- Seller ID -->
+
+                            <!-- Seller ID -->
                             <tr>
-                               <td colspan="2"> <b>Seller ID: </b><?php echo $row["FR_studentid"]; ?><br></td>
-                               
+                                <td colspan="2"> <b>Seller ID: </b><?php echo $row["FR_studentid"]; ?><br></td>
+
                             </tr>
-                            
+
                             <!-- Add to Cart Button -->
                             <tr>
-                                <td>&nbsp;</td>
+                                
                                 <td>
                                     <?php
                                     if ((isset($_SESSION['login_user']))) {
                                         if (isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
-                                            echo '<button class="btn-success"><i class="icon-shopping-cart icon-white"></i> Added to Cart</button>';
+                                            echo '<td id="Cartbutton"><button style="background-color:#02DB6B;" type="button" class="btn btn" onclick="RemoveFromCartRequst2(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')" onmouseover="ChangeButton()" onmouseout="ButtonBack()"><i class="icon-shopping-cart icon-white"></i>In Cart</button></td>';
                                         } else {
-                                            echo '<button type="button" class="btn btn" onclick="AddtoCart()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</button>';
+                                            echo '<td id="Cartbutton"><button type="button" class="btn btn" onclick="AddtoCartRequst(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button></td>';
                                         }
                                     } else {
-                                        echo '<button type="button" class="btn btn" onClick="Myalert2()"><i class="icon-shopping-cart icon-white"></i> Add to Cart</button>';
+                                        echo '<td> <button type="button" class="btn btn" onClick="Myalert()"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button> </td>';
                                     }
                                     ?>
-                                    
                                 </td>
                             </tr>
                         </table>
@@ -190,19 +176,6 @@
             <script src="js/jquery.bxslider.js"></script>
             <script src="js/main-menu.js"></script>
             <script src="js/template.js"></script>
-            <script>
-                function Myalert() {
-                    alert("Items already added to car");
-                }
-                ;
-                function Myalert2() {
-                    alert("You must log-in first");
-                }
-                function AddtoCart(){
-                window.location.href="page-product-details.php?product_id="+ <?php echo $ProductID ?> +"&query_type=add_to_cart";
-
-                }
-                ;
-            </script>
+            <script src="Shopping-Cart.js"></script>
     </body>
 </html>
