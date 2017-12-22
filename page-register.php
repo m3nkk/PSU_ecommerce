@@ -60,7 +60,7 @@
 							<form role="form" method="post" action="register.php">
 								<div class="form-group">
 		        				 	<label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-                                                                <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onchange="getIdRequest()" required>
+                                                                <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="" onchange="getIdRequest()"  required>
                                                                         <p id ="idMessage"></p> 
 									
 								</div>
@@ -82,7 +82,7 @@
 									 
 								</div>
 								<div class="form-group">
-                                                                    <button type="submit" class="btn pull-right">Register</button>
+                                 <button type="submit" class="btn pull-right" id="submitBtn" disabled>Register</button>
 									<div class="clearfix"></div>
 								</div>
 							</form>

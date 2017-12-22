@@ -25,21 +25,26 @@ function getXMLHTTPRequest(){
 function getIdRequest(){
 	
 	var id = document.getElementById("reg_studentid").value;
+
+
+
+
+	if ((xmlHttp.readyState == 0)||  (xmlHttp.readyState == 4)){
+
+		xmlHttp.open("post", "checkId.php?", true);
+		xmlHttp.onreadystatechange=idCallback;
+		xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlHttp.send("id="+id);
+	}
 	
 	
-	
-	
-		if ((xmlHttp.readyState == 0)||  (xmlHttp.readyState == 4)){
-			
-			xmlHttp.open("post", "checkId.php?", true);
-			xmlHttp.onreadystatechange=idCallback;
-			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlHttp.send("id="+id);
-		}
-	
-		
 
 }
+
+
+
+
+
 
 function idCallback(){
 	
@@ -55,14 +60,32 @@ function idCallback(){
 			var  code = xmlResponse.getElementsByTagName("code")[0].childNodes[0].nodeValue;
 			var message = xmlResponse.getElementsByTagName("message")[0].childNodes[0].nodeValue;
 			
+			/*
+			if(isNaN(id)){
+				canSubmit = false;
+				document.getElementById("idMessage").innerHTML =  '<span style="color:#8b0000 "><i class="glyphicon glyphicon-remove"></i> ID has to be a number </span>';
+			}else if(id.length != 9){
+				canSubmit = false;
+				document.getElementById("idMessage").innerHTML =  '<span style="color:#8b0000 "><i class="glyphicon glyphicon-remove"></i> ID has to be exactly 9 digits</span>';
+			}else if(parseInt(id)<0){
+				canSubmit = false;
+				document.getElementById("idMessage").innerHTML =  '<span style="color:#8b0000 "><i class="glyphicon glyphicon-remove"></i> ID cant be negative</span>';
+			}else
+			*/
+			
 			if (code=="1"){
+				document.getElementById("submitBtn").disabled = false;
 				document.getElementById("idMessage").innerHTML = '<span style="color:#50c878"><i class="glyphicon glyphicon-ok"></i>  '+message+'</span>';
-			}	else{
+				document.getElementById("reg_email").value = id+'@psu.edu.sa';
+			
+				
+			}else{
+				document.getElementById("submitBtn").disabled = true;
 				document.getElementById("idMessage").innerHTML =  '<span style="color:#8b0000 "><i class="glyphicon glyphicon-remove"></i>  '+message+'</span>';
 			} 
-			
-			
-			
+
+
+
 			
 			
 			
@@ -73,27 +96,7 @@ function idCallback(){
 	
 }
 
-function validateForm(){
-	var valid = true;
-	var studentId= document.getElementById("reg_studentid").value
-	var email= document.getElementById("reg_email").value;
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
-    if(!re.test(email.toLowerCase())){
-    	valid = false;
-    	alert("Incorrect e-mail");
-    }
-    if(isNaN(studentId)){
-    	alert("ID has to be a number");
-         return valid = false;
-         }
-     if(studentId.length != 9){
-        alert("Incorrect student ID");
-    	return valid = false;
-    	
-    } 
-    	return valid;
-    }
+
      
     
     

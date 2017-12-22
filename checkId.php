@@ -5,19 +5,42 @@ include 'dbconnect.php';
 $num=0;
 
 
-if (isset($_POST["id"])){
+if (isset($_POST["id"])) {
     
     $id = $_POST["id"];
-    //ID too long or too short
-    if (strlen($id) !=9){
+    
+    
+    
+    
+    // ID too long or too short
+    if (strlen($id) != 9) {
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
-       echo '<message>Incorrect ID</message>';
+        echo '<message> ID has to be exactly 9 digits</message>';
         echo '<code>3</code>';
-       
+        
         echo '</response>';
-    }else {
+    } elseif (intval($id) < 0) {
+        // check if the id integer is not negative
+        header('Content-Type: text/xml');
+        echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
+        echo ('<response>');
+        echo '<message>ID cant be negative</message>';
+        echo '<code>3</code>';
+        
+        echo '</response>';
+    }elseif (is_nan(intval($id))==1){
+        // check if the ID is a number or not
+        header('Content-Type: text/xml');
+        echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
+        echo ('<response>');
+        echo '<message>ID cant contain letters</message>';
+        echo '<code>3</code>';
+        
+        echo '</response>';
+    
+  } else {
     
      
     $sql = "SELECT * FROM users where studentid='".$id."'";
