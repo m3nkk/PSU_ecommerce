@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="productStatus.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -57,7 +58,7 @@
                                 <div class="cart-item-title"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a></div>
                                 <div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
                                 <div class="feature">Condition: <b><?php echo $row["pCondition"]; ?></b></div>
-
+                                <div class="feature">Status: <b id="pStatus<?php echo $row["id"] ?>"><?php echo "Pending"; ?></b></div>  
                             </td>
 
                             <!-- Shopping Cart Item Price -->
@@ -93,8 +94,15 @@
 
                             <td>
                                 <div class="cart-item-title"><a href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a></div>
+                                <div class="feature">Product ID: <b id="statusID<?php echo $row["id"] ?>"><?php echo $row["id"]; ?></b></div>
                                 <div class="feature">Category: <b><?php echo $row["category"]; ?></b></div>
                                 <div class="feature">Condition: <b><?php echo $row["pCondition"]; ?></b></div>
+                                <div class="feature">Status: <b id="aStatus<?php echo $row["id"] ?>"><?php echo "Accepted"; ?></b></div>
+                                
+                                <select class="form-control" id="statuslist" name="statuslist" onchange="getStatusRequest(<?php echo $row["id"];?>)">
+        								<option value="2">Accepted</option>
+        								<option value="3">Sold</option>
+							   </select>
 
                             </td>
 
@@ -134,6 +142,7 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
+        <script src="productStatus.js"></script>
 
     </body>
 </html>
