@@ -18,7 +18,7 @@ echo '<div class="footer">
                         <p class="contact-us-details">
                             <b>Address:</b> Riyadh, Saudi Arabia<br/>
                             <b>Phone:</b> +966 55 2020770<br/>
-                            <b>Email:</b> <a href="mailto:psu.ecommerce@gmail.com">m3n991@gmail.com</a>
+                            <b>Email:</b> <a href="mailto:psu.ecommerce@gmail.com">psu.ecommerce@gmail.com</a>
                         </p>
                     </div>
                     <div class="col-footer col-md-2 col-xs-6">

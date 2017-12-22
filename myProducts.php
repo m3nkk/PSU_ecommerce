@@ -28,84 +28,26 @@
         <![endif]-->
 
         <!-- Navigation & Logo-->
-        <div class="mainmenu-wrapper">
-            <div class="container">
-                <div class="menuextras">
-                    <div class="extras">
-                        <ul>
-                            <li>
-                                <div class="dropdown choose-country">
-                                    <a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li role="menuitem"><a href="#"><img src="img/flags/us.png" alt="United States"> US</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <?php
-                            include "dbconnect.php";
-                            session_start();
-                            if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
-                                $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
-                            }
+        <?php
+        include 'Pages-Header.php';
 
-                            if (!isset($_SESSION["login_user"])) {
-                                header("location: page-login.php");
-                            }
-                            ?>
+        if (!isset($_SESSION["login_user"])) {
+            header("location: page-login.php");
+        }
+        ?>
 
 
-
-                            <?php
-                            if ((isset($_SESSION['login_user']))) {
-                                echo '<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
-                                echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
-                            } else {
-                                echo '<li> <a href="page-register.php"><b><span class="glyphicon glyphicon-new-window"></span> Register</b></a></li>';
-                                echo '<li><a href="page-login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
-
-
-                                if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
-                                    $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
-                                }
-
-                                if (!isset($_SESSION["number_of_items"])) {
-                                    $_SESSION["number_of_items"] = 0;
-                                }
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                </div>
-                <nav id="mainmenu" class="mainmenu">
-                    <ul>
-                        <li class="logo-wrapper"><a href="index.php"><img src="img/psu_logo.png" alt="PSU"></a></li>
-                        <li class="active">
-                            <a href="index.php">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">Buy</a>
-                        </li>
-                        <li>
-                            <a href="sell.php">Sell</a>
-                        </li>
-                        <li>
-                            <a href="myProducts.php">My Products</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-5">
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
-<?php
-$studentID = $_SESSION["login_user"]["id"];
-$sql = "select * from products where FR_studentid='" . $studentID . "' and status =1";
-$result = $conn->query($sql);
-while ($row = $result->fetch_assoc()) {
-    ?>
+                    <?php
+                    $studentID = $_SESSION["login_user"]["id"];
+                    $sql = "select * from products where FR_studentid='" . $studentID . "' and status =1";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
 
                         <tr id="ProductRowID<?php echo $row["id"] ?>" >
 
@@ -127,8 +69,8 @@ while ($row = $result->fetch_assoc()) {
                         </tr>
 
 
-<?php }
-?>
+                    <?php }
+                    ?>
 
 
                 </table>
@@ -138,12 +80,12 @@ while ($row = $result->fetch_assoc()) {
             <div class="col-md-5">
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
-<?php
-$studentID = $_SESSION["login_user"]["id"];
-$sql = "select * from products where FR_studentid='" . $studentID . "' and status =2";
-$result = $conn->query($sql);
-while ($row = $result->fetch_assoc()) {
-    ?>
+                    <?php
+                    $studentID = $_SESSION["login_user"]["id"];
+                    $sql = "select * from products where FR_studentid='" . $studentID . "' and status =2";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
 
                         <tr id="ProductRowID<?php echo $row["id"] ?>" >
 
@@ -165,8 +107,8 @@ while ($row = $result->fetch_assoc()) {
                         </tr>
 
 
-<?php }
-?>
+                    <?php }
+                    ?>
 
 
                 </table>
@@ -180,7 +122,7 @@ while ($row = $result->fetch_assoc()) {
 
 
         <!-- Footer -->
-        <?php include 'Pages-Footer.php';?>
+        <?php include 'Pages-Footer.php'; ?>
 
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

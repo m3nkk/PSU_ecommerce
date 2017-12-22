@@ -3,32 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <?php
-    include "dbconnect.php";
-    session_start();
-    if (!isset($_SESSION["number_of_items"])) {
-        $_SESSION["number_of_items"] = 0;
-    }
 
-    if ((!isset($_SESSION['login_user'])) && (isset($_COOKIE['login_user']))) {
-        $_SESSION["login_user"] = unserialize($_COOKIE['login_user']);
-    }
-
-    if (isset($_GET["product_id"])) {
-        $sql = "select * from products where id='" . $_GET["product_id"] . "'";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $ProductID = $row["id"];
-        $imglink = $row["image_link"];
-        $ProductPrice = $row["price"];
-        $ProductName = $row["name"];
-        $ProductDesc = $row["description"];
-        $ProductShortDesc = $row["short_description"];
-        $ProductCategory = $row["category"];
-    } else {
-        header("location: index.php");
-    }
-    ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -55,8 +30,23 @@
 
 
         <!-- Navigation & Logo-->
-        <?php include 'Pages-Header.php'; ?>
-
+        <?php 
+        include 'Pages-Header.php'; 
+        if (isset($_GET["product_id"])) {
+        $sql = "select * from products where id='" . $_GET["product_id"] . "'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $ProductID = $row["id"];
+        $imglink = $row["image_link"];
+        $ProductPrice = $row["price"];
+        $ProductName = $row["name"];
+        $ProductDesc = $row["description"];
+        $ProductShortDesc = $row["short_description"];
+        $ProductCategory = $row["category"];
+    } else {
+        header("location: index.php");
+    }
+    ?>
         <!-- Page Title -->
         <div class="section section-breadcrumbs">
             <div class="container">
