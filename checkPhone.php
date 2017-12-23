@@ -5,37 +5,37 @@ include 'dbconnect.php';
 $num=0;
 
 
-if (isset($_POST["id"])) {
+if (isset($_POST["phone"])) {
     
-    $id = $_POST["id"];
+    $phone = $_POST["phone"];
     
     
     
     
     // ID too long or too short
-    if (strlen($id) != 9) {
+    if (strlen($phone) != 12) {
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
-        echo '<message> ID has to be exactly 9 digits</message>';
+        echo '<message> Phone has to be exactly 12 digits</message>';
         echo '<code>3</code>';
         
         echo '</response>';
-    } elseif (intval($id) < 0) {
+    } elseif (intval($phone) < 0) {
         // check if the id integer is not negative
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
-        echo '<message>ID cant be negative</message>';
+        echo '<message>Phone number cant be negative</message>';
         echo '<code>3</code>';
         
         echo '</response>';
-    }elseif (is_nan(intval($id))==1){
+    }elseif (is_nan(intval($phone))==1){
         // check if the ID is a number or not
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
-        echo '<message>ID cant contain letters</message>';
+        echo '<message>Phone number cant contain letters</message>';
         echo '<code>3</code>';
         
         echo '</response>';
@@ -43,7 +43,7 @@ if (isset($_POST["id"])) {
   } else {
     
      
-    $sql = "SELECT * FROM users where studentid='".$id."'";
+    $sql = "SELECT * FROM users where number='".$phone."'";
     // $sql = "SELECT * FROM users where studentid= '"214110111"'";
     $result = $conn->query($sql);
     $num = $result->num_rows;
@@ -53,7 +53,7 @@ if (isset($_POST["id"])) {
         header('Content-Type: text/xml');
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
-       echo '<message>ID is already registered</message>';
+       echo '<message>Phone number is already registered!</message>';
         echo '<code>2</code>';
         
         echo '</response>';
@@ -65,7 +65,7 @@ if (isset($_POST["id"])) {
         echo ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
         echo ('<response>');
         //echo '<message> "<i class="glyphicon glyphicon-check"></i>" </message>';
-        echo '<message> ID is available</message>';
+        echo '<message> Phone number is available </message>';
         echo '<code>1</code>';
         
         echo '</response>';

@@ -44,7 +44,7 @@ echo'
                             <a href="index.php">Home</a>
                         </li>
                         <li>
-                            <a href="#">Buy</a>
+                            <a href="page-shopping-cart.php">Buy</a>
                         </li>
                         <li>
                             <a href="sell.php">Sell</a>
