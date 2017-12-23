@@ -21,8 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         header("location: index.php");
     } else {
-        echo $error = "Your Login Name or Password is invalid";
-        header("Refresh: 2.5; URL=page-login.php");
+        $message = "Your id or password is invalid";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        header("Refresh: 2.5; URL=page-login.php"); 
     }
 }
 ?>

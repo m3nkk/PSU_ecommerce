@@ -78,7 +78,7 @@
                 </table>
 
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1" style="margin-bottom:700px">
             
             </div>
 
