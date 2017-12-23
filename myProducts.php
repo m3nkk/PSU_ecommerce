@@ -41,7 +41,7 @@
 
         <div class="row">
             <div class="col-md-5" style="margin:20px;">
-            		<h2>Pending</h2>
+            	 <h2>Pending... <a href="sell.php">Add more?</a></h2> 
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
                     <?php

@@ -4,13 +4,7 @@ echo '<div class="footer">
                 <div class="row">
 
                     <div class="col-footer col-md-3 col-xs-6">
-                        <h3>Navigate</h3>
-                        <ul class="no-list-style footer-navigate-section">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
+
                     </div>
 
                     <div class="col-footer col-md-4 col-xs-6">

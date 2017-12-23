@@ -15,15 +15,7 @@ echo '<div class="mainmenu-wrapper">
             <div class="container">
                 <div class="menuextras">
                     <div class="extras">
-                        <ul>
-                            <li>
-                                <div class="dropdown choose-country">
-                                    <a class="#" data-toggle="dropdown" href="#"><img src="img/flags/sa.png" alt="Saudi Arabia"> KSA</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li role="menuitem"><a href="#"><img src="img/flags/us.png" alt="United States"> US</a></li>
-                                    </ul>
-                                </div>
-                            </li>';
+                        <ul>';
 
 if ((isset($_SESSION['login_user']))) {
     echo '<li class="shopping-cart-items" id="number_of_items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
