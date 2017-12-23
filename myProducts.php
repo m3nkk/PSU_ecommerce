@@ -40,7 +40,8 @@
 
 
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5" style="margin-left:25px;">
+            		<h2>Pending</h2>
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
                     <?php
@@ -77,10 +78,14 @@
                 </table>
 
             </div>
+            <div class="col-md-1">
+            
+            </div>
 
-            <div class="col-md-5">
+            <div class="col-md-5" style="margin-right:25px;">
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
+                		<h2>Accepted</h2>
                     <?php
                     $studentID = $_SESSION["login_user"]["id"];
                     $sql = "select * from products where FR_studentid='" . $studentID . "' and status =2";
@@ -113,20 +118,29 @@
 
                             </td>
                         </tr>
+                        
+                         
 
 
                     <?php }
                     ?>
+                    <tr>
+                    		<div>
+            					<a href="" class="btn btn-grey btn-block"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
+            				</div>
+                    </tr>
 
 
                 </table>
 
             </div>
+            
 
 
 
 
         </div>
+
 
 
         <!-- Footer -->
