@@ -79,7 +79,7 @@
                 <table>
                	    <tr>
                     		<div>
-            					<a href="sell.php" class="btn btn-grey btn-block"><i class="glyphicon glyphicon-refresh"></i>Add Product</a>
+            					<a href="sell.php" class="btn btn-grey btn-block"><i class="glyphicon glyphicon-plus"></i>Add Product</a>
             				</div>
                     </tr>
                 </table>
