@@ -21,6 +21,7 @@
 		<link rel="stylesheet" href="css/main.css">
 
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="Shopping-Cart.js"></script>
     </head>
     <body>
         <!-- Navigation & Logo-->
@@ -153,6 +154,6 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
-        <script src="shopping-Cart.js"> </script>
+        <script src="Shopping-Cart.js"></script>
     </body>
 </html>

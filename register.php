@@ -6,7 +6,7 @@ $studentid = $_POST['reg_studentid'];
 $password = $_POST['reg_password'];
 $firstName = $_POST['reg_firstName'];
 $lastName = $_POST['reg_lastName'];
-$email = $_POST['reg_email'];
+$email = $studentid . "@psu.edu.sa";
 $phone = $_POST['reg_phone'];
 
 
