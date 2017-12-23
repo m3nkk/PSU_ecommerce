@@ -40,7 +40,7 @@
 
 
         <div class="row">
-            <div class="col-md-5" style="margin-left:25px;">
+            <div class="col-md-5" style="margin:20px;">
             		<h2>Pending</h2>
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
@@ -82,7 +82,7 @@
             
             </div>
 
-            <div class="col-md-5" style="margin-right:25px;">
+            <div class="col-md-5" style="margin:20px;">
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
                 		<h2>Accepted</h2>
