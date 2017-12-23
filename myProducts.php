@@ -126,7 +126,7 @@
                     ?>
                     <tr>
                     		<div>
-            					<a href="" class="btn btn-grey btn-block"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
+            					<a href="" class="btn btn-grey btn-block"><i class="glyphicon glyphicon-refresh"></i>UPDATE</a>
             				</div>
                     </tr>
 
