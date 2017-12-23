@@ -41,7 +41,7 @@
 
         <div class="row">
             <div class="col-md-5" style="margin:20px;">
-            	 <h2>Pending... <a href="sell.php">Add more?</a></h2> 
+            	 <h2>Pending</h2> 
                 <!-- Shopping Cart Items -->
                 <table class="shopping-cart">
                     <?php
@@ -75,6 +75,13 @@
                     ?>
 
 
+                </table>
+                <table>
+               	    <tr>
+                    		<div>
+            					<a href="sell.php" class="btn btn-grey btn-block"><i class="glyphicon glyphicon-refresh"></i>Add Product</a>
+            				</div>
+                    </tr>
                 </table>
 
             </div>
@@ -124,13 +131,16 @@
 
                     <?php }
                     ?>
-                    <tr>
+                    
+
+
+                </table>
+                <table>
+               	    <tr>
                     		<div>
             					<a href="" class="btn btn-grey btn-block"><i class="glyphicon glyphicon-refresh"></i>UPDATE</a>
             				</div>
                     </tr>
-
-
                 </table>
 
             </div>
