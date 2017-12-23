@@ -30,23 +30,23 @@
 
 
         <!-- Navigation & Logo-->
-        <?php 
-        include 'Pages-Header.php'; 
+        <?php
+        include 'Pages-Header.php';
         if (isset($_GET["product_id"])) {
-        $sql = "select * from products where id='" . $_GET["product_id"] . "'";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $ProductID = $row["id"];
-        $imglink = $row["image_link"];
-        $ProductPrice = $row["price"];
-        $ProductName = $row["name"];
-        $ProductDesc = $row["description"];
-        $ProductShortDesc = $row["short_description"];
-        $ProductCategory = $row["category"];
-    } else {
-        header("location: index.php");
-    }
-    ?>
+            $sql = "select * from products where id='" . $_GET["product_id"] . "'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $ProductID = $row["id"];
+            $imglink = $row["image_link"];
+            $ProductPrice = $row["price"];
+            $ProductName = $row["name"];
+            $ProductDesc = $row["description"];
+            $ProductShortDesc = $row["short_description"];
+            $ProductCategory = $row["category"];
+        } else {
+            header("location: index.php");
+        }
+        ?>
         <!-- Page Title -->
         <div class="section section-breadcrumbs">
             <div class="container">
@@ -77,16 +77,16 @@
                         </div>
                         <h5>Quick Overview</h5>
                         <p>
-                            <?php echo $ProductShortDesc ?>
+<?php echo $ProductShortDesc ?>
                         </p>
                         <table class="shop-item-selections">
 
-                            <?php
-                            $sql2 = "select * from users where studentid='" . $row["FR_studentid"] . "'";
-                            $result2 = $conn->query($sql2);
-                            $row2 = $result2->fetch_assoc();
-                            $fullName = $row2['firstname'] . " " . $row2['lastname'];
-                            ?>
+<?php
+$sql2 = "select * from users where studentid='" . $row["FR_studentid"] . "'";
+$result2 = $conn->query($sql2);
+$row2 = $result2->fetch_assoc();
+$fullName = $row2['firstname'] . " " . $row2['lastname'];
+?>
                             <!-- Category -->
                             <tr>
                                 <td colspan="2"><b>Category: </b> <?php echo $ProductCategory; ?><br></td>
@@ -110,19 +110,28 @@
 
                             <!-- Add to Cart Button -->
                             <tr>
-                                
+
                                 <td>
-                                    <?php
-                                    if ((isset($_SESSION['login_user']))) {
-                                        if (isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
-                                            echo '<td id="Cartbutton"><button style="background-color:#02DB6B;" type="button" class="btn btn" onclick="RemoveFromCartRequst2(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')" onmouseover="ChangeButton()" onmouseout="ButtonBack()"><i class="icon-shopping-cart icon-white"></i>In Cart</button></td>';
-                                        } else {
-                                            echo '<td id="Cartbutton"><button type="button" class="btn btn" onclick="AddtoCartRequst(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button></td>';
-                                        }
-                                    } else {
-                                        echo '<td> <button type="button" class="btn btn" onClick="NotLogInAlert()"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button> </td>';
-                                    }
-                                    ?>
+<?php
+if ((isset($_SESSION['login_user']))) {
+
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== false) {
+        if (isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
+            echo '<td id="Cartbutton"><button style="background-color:#02DB6B;" type="button" class="btn btn"><i class="icon-shopping-cart icon-white"></i>In Cart</button></td>';
+        } else {
+            echo '<td id="Cartbutton"><button type="button" class="btn btn" onclick="AddtoCartRequst(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button></td>';
+        }
+    } else {
+        if (isset($_SESSION["shopping_cart"][$_GET["product_id"]])) {
+            echo '<td id="Cartbutton"><button style="background-color:#02DB6B;" type="button" class="btn btn" onclick="RemoveFromCartRequst2(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')" onmouseover="ChangeButton()" onmouseout="ButtonBack()"><i class="icon-shopping-cart icon-white"></i>In Cart</button></td>';
+        } else {
+            echo '<td id="Cartbutton"><button type="button" class="btn btn" onclick="AddtoCartRequst(' . $ProductID . ',' . $_SESSION["number_of_items"] . ')"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button></td>';
+        }
+    }
+} else {
+    echo '<td> <button type="button" class="btn btn" onClick="NotLogInAlert()"><i class="icon-shopping-cart icon-white"></i>Add to Cart</button> </td>';
+}
+?>
                                 </td>
                             </tr>
                         </table>
@@ -142,7 +151,7 @@
                                 <div class="tab-pane active" id="tab1">
                                     <h4>Product Description</h4>
                                     <p>
-                                        <?php echo $ProductDesc ?>
+<?php echo $ProductDesc ?>
                                     </p>
 
                                 </div>
@@ -154,7 +163,7 @@
             </div>
 
             <!-- Footer -->
-            <?php include 'Pages-Footer.php'; ?>
+<?php include 'Pages-Footer.php'; ?>
 
             <!-- Javascripts -->
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

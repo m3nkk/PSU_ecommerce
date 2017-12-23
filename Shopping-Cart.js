@@ -1,5 +1,6 @@
 var xmlHttp = getXMLHTTPRequest();
 var Oldbutton = "";
+
 function getXMLHTTPRequest() {
     var xmlHttp;
 
@@ -40,10 +41,13 @@ function AddtoCartRequstCallback() {
             var id = xmlResponse.getElementsByTagName("ID")[0].childNodes[0].nodeValue;
             var button = document.getElementById("Cartbutton");
             document.getElementById("number_of_items").getElementsByTagName('b')[0].innerHTML = numberOfItems + " items";
+            if(/chrome/.test( navigator.userAgent.toLowerCase() )){
+                button.innerHTML = '<button style="background-color:#02DB6B;" type="button" class="btn btn"><i class="icon-shopping-cart icon-white"></i>In Cart</button>';
+        }else{
             button.innerHTML = '<button style="background-color:#02DB6B;" type="button" class="btn btn" onclick="RemoveFromCartRequst2(' + id + ',' + numberOfItems + ')" onmouseover="ChangeButton()" onmouseout="ButtonBack()"><i class="icon-shopping-cart icon-white"></i>In Cart</button>';
-
         }
     }
+}
 }
 
 function RemoveFromCartRequst(id, NumOfItems) {
