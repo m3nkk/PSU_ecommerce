@@ -47,7 +47,7 @@
 
         <div class="section">
 
-<<<<<<< HEAD
+
 	    	<div class="container" style="margin: 0 30%;">
 				<div class="row">
 					<div class="col-sm-7">
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</div>
-=======
+
             <div class="container" style="margin: 0 30%;">
                 <div class="row">
                     <div class="col-sm-7">
@@ -127,7 +127,7 @@
                 </div>
             </div>
         </div>
->>>>>>> branch 'master' of https://github.com/m3nkk/PSU_ecommerce.git
+
 
         <!-- Footer -->
 <?php include 'Pages-Footer.php'; ?>
