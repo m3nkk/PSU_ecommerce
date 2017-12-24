@@ -1,4 +1,5 @@
 <?php
+
 include "dbconnect.php";
 
 
@@ -9,8 +10,4 @@ if (isset($_POST['member_password']) && isset($_COOKIE['CanReset']) && isset($_P
     setcookie("CanReset", null, -1, '/');
     header("location: index.php");
 }
-
-
-
-
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 include "dbconnect.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -12,9 +13,9 @@ if (isset($_POST['UserID'])) {
         $user = mysqli_fetch_array($result);
         require 'PHPMailer/PHPMailer.php';
         require 'PHPMailer/SMTP.php';
-        define("PSU_Store", "http://localhost/");
+        define("PSU_Store", "http://localhost/PSU_ecommerce");
         setcookie('CanReset', "You can reset your password for 15min", time() + 1800, "/");
-        $emailBody = "<div><b>" . $user["firstname"] . " " . $user["lastname"] . "</b>,<br><br><p>Click this link to recover your password<br><a href='" . PSU_Store . "PSU_ecommerce/page-password-reset.php?studentid=" . $user["studentid"] . "'>" . PSU_Store . "PSU_ecommerce/page-password-reset.php?studentid=" . $user["studentid"] . "</a><br><br></p>Regards,<br> Admin.</div>";
+        $emailBody = "<div><b>" . $user["firstname"] . " " . $user["lastname"] . "</b>,<br><br><p>Click this link to recover your password<br><a href='" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "'>" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "</a><br><br></p>Regards,<br> Admin.</div>";
 
         $mail = new PHPMailer(true);
         $mail->SMTPOptions = array(
@@ -25,7 +26,7 @@ if (isset($_POST['UserID'])) {
             )
         );
         //Server settings
-        $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+        $mail->SMTPDebug = 1;                                 // Enable verbose debug output
         $mail->isSMTP();                                      // Set mailer to use SMTP
         $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -44,11 +45,10 @@ if (isset($_POST['UserID'])) {
         $mail->Subject = 'Forgot Password Recovery';
         $mail->MsgHTML($emailBody);
 
-        
+
 
         if ($mail->Send()) {
-            header_remove();
-            header("location: page-forget-password.php?success_message=success");
+            header("location: " . PSU_Store . "/page-forget-password.php?success_message=success");
         } else {
             header("location: page-forget-password.php?error_message=error");
         }
@@ -56,4 +56,3 @@ if (isset($_POST['UserID'])) {
         header("location: page-forget-password.php?error_message=error2");
     }
 }
-?>
