@@ -48,55 +48,55 @@
         <div class="section">
 
 
-	    	<div class="container" style="margin: 0 30%;">
-				<div class="row">
-					<div class="col-sm-7">
-						<div class="basic-login">
-							<form role="form" method="post" action="register.php">
-								<div class="form-group">
-		        				 	<label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
-                                                                <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="PSU ID Here" onchange="getIdRequest()"  required>
-                                                                        <p id ="idMessage"></p> 
-									
-								</div>
-								<div class="form-group">
-		        				 	<label for="register"><i class="icon-lock"></i> <b>Password</b></label>
-									<input class="form-control" id="reg_password" name="reg_password" type="password" placeholder="Password" required>
-								</div> 
-								<div class="form-group">
-		        				 	<label for="register"><i class="icon-lock"></i> <b>First Name</b></label>
-									<input class="form-control" id="reg_firstName" name="reg_firstName" type="text" placeholder="First Name" required>
-								</div>
-								<div class="form-group">
-		        				 	<label for="register"><i class="icon-lock"></i> <b>Last Name</b></label>
-									<input class="form-control" id="reg_lastName" name="reg_lastName" type="text" placeholder="Last Name" required>
-								</div>
-								<div class="form-group">
-		        				 	<label for="register"><i class="icon-lock"></i> <b>Phone Number</b></label>
-									<input class="form-control" id="reg_phone" name="reg_phone" type="number" placeholder="966*********" onchange="getPhoneRequest()" required>
-									<p id ="phoneMessage"></p> 
-								</div>
-								<div class="form-group">
-		        				 	<label for="register"><i class="icon-lock"></i> <b>Email</b></label>
-									<input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="" disabled>
-									 
-								</div>
-								<div class="form-group">
-                                 <button type="submit" class="btn pull-right" id="submitBtn" disabled>Register</button>
-									<div class="clearfix"></div>
-								</div>
-							</form>
-						</div>
-					</div>
-					<div></div>
-				</div>
-			</div>
-		</div>
+            <div class="container" style="margin: 0 30%;">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="basic-login">
+                            <form role="form" method="post" action="register.php">
+                                <div class="form-group">
+                                    <label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
+                                    <input class="form-control" id="reg_studentid" name="reg_studentid" type="number" placeholder="PSU ID Here" onchange="getIdRequest()"  required>
+                                    <p id ="idMessage"></p> 
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="register"><i class="icon-lock"></i> <b>Password</b></label>
+                                    <input class="form-control" id="reg_password" name="reg_password" type="password" placeholder="Password" required>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="register"><i class="icon-lock"></i> <b>First Name</b></label>
+                                    <input class="form-control" id="reg_firstName" name="reg_firstName" type="text" placeholder="First Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register"><i class="icon-lock"></i> <b>Last Name</b></label>
+                                    <input class="form-control" id="reg_lastName" name="reg_lastName" type="text" placeholder="Last Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register"><i class="icon-lock"></i> <b>Phone Number</b></label>
+                                    <input class="form-control" id="reg_phone" name="reg_phone" type="number" placeholder="966*********" onchange="getPhoneRequest()" required>
+                                    <p id ="phoneMessage"></p> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="register"><i class="icon-lock"></i> <b>Email</b></label>
+                                    <input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="" disabled>
+
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn pull-right" id="submitBtn" disabled>Register</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
 
 
 
         <!-- Footer -->
-<?php include 'Pages-Footer.php'; ?>
+        <?php include 'Pages-Footer.php'; ?>
 
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="product-Image"><i class="icon-lock"></i> <b>Image</b></label>
-                                    <input class="form-control" type="file" name="image">
+                                    <input class="form-control" type="file" name="image" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="product-condition"><i class="icon-lock"></i> <b>Condition</b></label>

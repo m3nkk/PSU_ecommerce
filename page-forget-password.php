@@ -72,7 +72,7 @@
                                      
                                      ?>
                                     <label for="restore-email"><i class="icon-envelope"></i> <b>Enter Your ID</b></label>
-                                    <input class="form-control" id="UserID" type="text" name="UserID" placeholder="Enter Your ID">
+                                    <input class="form-control" id="UserID" type="text" name="UserID" placeholder="Enter Your ID" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn pull-right" onkeypress="">Reset Password</button>

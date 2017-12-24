@@ -111,17 +111,5 @@
             <script src="js/jquery.bxslider.js"></script>
             <script src="js/main-menu.js"></script>
             <script src="js/template.js"></script>
-            <script>
-                function validate_forgot() {
-                    if ((document.getElementById("UserID").value == "")) {
-                        alert('ID is required!');
-                        return false;
-                    } else if (document.getElementById("UserID").value.toString().length != 9) {
-                        alert('Invalid input!');
-                        return false;
-                    }
-                    return true
-                }
-            </script>
     </body>
 </html>

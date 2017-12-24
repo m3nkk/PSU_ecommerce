@@ -55,11 +55,11 @@
                             <form role="form" method="POST" action="login.php">
                                 <div class="form-group">
                                     <label for="login-username"><i class="icon-user"></i> <b>Student ID</b></label>
-                                    <input class="form-control" id="login-username" type="text" placeholder="" name="username">
+                                    <input class="form-control" id="login-username" type="text" placeholder="" name="username" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
-                                    <input class="form-control" id="login-password" type="password" placeholder="" name="password">
+                                    <input class="form-control" id="login-password" type="password" placeholder="" name="password" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="checkbox">
