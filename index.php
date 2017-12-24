@@ -157,8 +157,13 @@
                             //to get prev/next pages
                             $currentpage = $_GET["pageNumber"];
                             if ($currentpage == 1) {
+                                if($NumberOfPages==1){
+                                    $nextpage=$currentpage;
+                                    $prevpage = $currentpage;
+                                }else{
                                 $nextpage = $currentpage + 1;
                                 $prevpage = $NumberOfPages;
+                                }
                             } else if ($currentpage == $NumberOfPages) {
                                 $nextpage = 1;
                                 $prevpage = $currentpage - 1;

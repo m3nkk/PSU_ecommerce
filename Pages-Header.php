@@ -51,7 +51,15 @@ echo'
                                     </li>';
                         }
 }
-                   echo '</ul>
+if(basename($_SERVER['PHP_SELF'])=="index.php"||basename($_SERVER['PHP_SELF'])=="search-results-page.php"){
+    echo              '<li> <form class="navbar-form" role="search" action="search-results-page.php" method="GET">
+                                <input type="text" class="form-control" placeholder="Search items" name="keyword">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </form>
+                       </li>';
+}
+                   echo '
+                       </ul>
                 </nav>
             </div>
         </div>';
