@@ -93,6 +93,12 @@
 
                             <?php
                         }
+                    }else{
+                        echo"
+                            <div class='col-sm-4'></div>
+                        <div class='col-sm-4'>
+                        <div class='alert alert-danger' style='size: 10px'> <p style='text-align: center'>No results found</p></div>
+                        </div>";
                     }
                     ?>
                 </div>
