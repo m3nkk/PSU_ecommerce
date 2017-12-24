@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $message = "Your id or password is invalid";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        header("location: page-login.php");
+        header("Refresh: 1.5; URL=page-login.php"); 
+
     }
 }
 ?>
