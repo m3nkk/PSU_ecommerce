@@ -3,6 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
     <head>
 
 
@@ -51,7 +52,11 @@
 
         <!-- Navigation & Logo-->
         <?php include 'Pages-Header.php'; ?>
-
+		<?php
+        if ($_SESSION["login_user"]["role"]!='admin') {
+            header("location: page-login.php");
+        }
+        ?>
         <div class="row">
             <div class="col-md-8">
                 <h2>Pending Requests</h2>
