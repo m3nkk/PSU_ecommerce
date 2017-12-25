@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 
-    
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -31,16 +31,20 @@
 
 
         <!-- Navigation & Logo-->
-        <?php include 'Pages-Header.php'; 
-        
+        <?php
+        include 'Pages-Header.php';
+
         if (isset($_SESSION["login_user"])) {
-        header("location: index.php");
-    }
-    
-	if((!isset($_GET["studentid"])) || (!isset($_COOKIE['CanReset']))) {
             header("location: index.php");
-	}
-        
+        }
+
+        if ((!isset($_GET["studentid"])) || (!isset($_GET['token']))) {
+            header("location: index.php");
+        }
+
+        if ($_GET['token'] != $_COOKIE['Token']) {
+            header("location: index.php");
+        }
         ?>
 
 
@@ -55,26 +59,26 @@
             </div>
         </div>
 
-        
-        
-  
-                
+
+
+
+
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div class="basic-login">
                             <form role="form" method="POST" action="Reset_Paswword.php" onsubmit="return validate_password_reset()">
-                                
+
                                 <div class="form-group">
                                     <label for="restore-email"><i class="icon-envelope"></i> <b>Enter Password</b></label>
                                     <input class="form-control" type="password" name="member_password" id="member_password" class="input-field">
-                                    <input type="hidden" name=member_id value="<?php echo $_GET["studentid"]?>">
-                                    
-                                    
+                                    <input type="hidden" name=member_id value="<?php echo $_GET["studentid"] ?>">
+
+
                                     <label for="restore-email"><i class="icon-envelope"></i> <b>Confirm your Password</b></label>
                                     <input class="form-control" type="password" id="confirm_password" class="input-field">
-                                    
+
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn pull-right" >Reset Password</button>
@@ -88,7 +92,7 @@
         </div>
 
         <!-- Footer -->
-        <?php include 'Pages-Footer.php'; ?>
+<?php include 'Pages-Footer.php'; ?>
 
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -101,18 +105,18 @@
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
         <script>
-function validate_password_reset() {
-	if((document.getElementById("member_password").value == "") && (document.getElementById("confirm_password").value == "")) {
-		alert("Empty Field!");
-		return false;
-	}
-	if(document.getElementById("member_password").value  != document.getElementById("confirm_password").value) {
-                alert("Both password should be same!");
-		return false;
-	}
-	alert("Password Changed Successfully!");
-	return true;
-}
-</script>
+                                function validate_password_reset() {
+                                    if ((document.getElementById("member_password").value == "") && (document.getElementById("confirm_password").value == "")) {
+                                        alert("Empty Field!");
+                                        return false;
+                                    }
+                                    if (document.getElementById("member_password").value != document.getElementById("confirm_password").value) {
+                                        alert("Both password should be same!");
+                                        return false;
+                                    }
+                                    alert("Password Changed Successfully!");
+                                    return true;
+                                }
+        </script>
     </body>
 </html>
