@@ -9,7 +9,6 @@ if (isset($_POST)) {
    
     
     $studentid =  $_SESSION["login_user"]["id"];
-    $password = $_POST['reg_password'];
     $firstName = $_POST['reg_firstName'];
     $lastName = $_POST['reg_lastName'];
     $email = $studentid . "@psu.edu.sa";
@@ -22,7 +21,7 @@ if (isset($_POST)) {
     $result = mysqli_query($conn, $sql);
     
     if($result){
-      
+         header("location: page-account.php?message=success");
     }else echo "failed to update";
    
 } else {

@@ -32,22 +32,17 @@
         include 'Pages-Header.php';
         if (!isset($_SESSION["login_user"])) {
             header("location: index.php");
-            
         }
-        
         ?>
-        
-        <?php 
+
+        <?php
         $studentID = $_SESSION["login_user"]["id"];
-        $sql = "select * from users where studentid=". $studentID."";
+        $sql = "select * from users where studentid=" . $studentID . "";
         $result = $conn->query($sql);
-        $row =  $result->fetch_assoc();
+        $row = $result->fetch_assoc();
         $firstname = $row["firstname"];
         $lastname = $row["lastname"];
         $number = $row["number"];
-        
-        
-        
         ?>
         <!-- Page Title -->
         <div class="section section-breadcrumbs">
@@ -68,6 +63,12 @@
                     <div class="col-sm-7">
                         <div class="basic-login">
                             <form role="form" method="post" action="updateAccount.php">
+                                <?php
+                                if (isset($_GET['message'])) {
+                                    echo "<div class='alert alert-success'> <p style='text-align: center'>Account info updated successfuly</p></div>
+                        ";
+                                }
+                                ?>
                                 <div class="form-group">
                                     <label for="register-username"><i class="icon-user"></i> <b>Student ID</b></label>
                                     <input class="form-control" id="reg_studentid" name="reg_studentid" type="number"   value = "<?php echo $studentID; ?>" disabled>
@@ -83,7 +84,7 @@
                                     <input class="form-control" id="reg_lastName" name="reg_lastName" type="text" placeholder="Last Name" value = "<?php echo $lastname; ?>" required>
                                 </div>
                                 <div class="form-group">
-                                
+
                                 </div>
                                 <div class="form-group">
                                     <label for="register"><i class="icon-lock"></i> <b>Phone Number</b></label>
@@ -92,7 +93,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="register"><i class="icon-lock"></i> <b>Email</b></label>
-                                    <input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="<?php echo $studentID."@psu.edu.sa"; ?>" disabled>
+                                    <input class="form-control" id="reg_email" name="reg_email" type="email" placeholder="<?php echo $studentID . "@psu.edu.sa"; ?>" disabled>
 
                                 </div>
                                 <div class="form-group">
