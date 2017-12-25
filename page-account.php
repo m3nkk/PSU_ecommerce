@@ -49,7 +49,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Register</h1>
+                        <h1>Account Information</h1>
                     </div>
                 </div>
             </div>
@@ -125,5 +125,5 @@
         <script src="js/template.js"></script>
 
     </body>
-    <script src="register.js"></script>
+    <script src="js/register.js"></script>
 </html>

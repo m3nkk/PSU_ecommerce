@@ -166,7 +166,7 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
-        <script src="productStatus.js"></script>
+        <script src="js/productStatus.js"></script>
 
     </body>
 </html>

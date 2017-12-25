@@ -110,5 +110,5 @@
         <script src="js/template.js"></script>
 
     </body>
-    <script src="register.js"></script>
+    <script src="js/register.js"></script>
 </html>

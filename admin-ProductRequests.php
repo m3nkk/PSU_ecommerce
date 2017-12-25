@@ -179,7 +179,7 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
-        <script src="productInfo.js"></script>
+        <script src="js/productInfo.js"></script>
 
     </body>
 </html>

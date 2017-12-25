@@ -154,6 +154,6 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
-        <script src="Shopping-Cart.js"></script>
+        <script src="js/Shopping-Cart.js"></script>
     </body>
 </html>
