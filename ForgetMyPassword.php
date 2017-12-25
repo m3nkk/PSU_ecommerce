@@ -14,8 +14,9 @@ if (isset($_POST['UserID'])) {
         require 'PHPMailer/PHPMailer.php';
         require 'PHPMailer/SMTP.php';
         define("PSU_Store", "http://psustore.sa.tn");
-        setcookie('CanReset', "You can reset your password for 15min", time() + 1800, "/");
-        $emailBody = "<div><b>" . $user["firstname"] . " " . $user["lastname"] . "</b>,<br><br><p>Click this link to recover your password<br><a href='" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "'>" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "</a><br><br></p>Regards,<br> Admin.</div>";
+        $Token = bin2hex(openssl_random_pseudo_bytes(16));
+        setcookie('Token', $Token, time() + 1800, "/");
+        $emailBody = "<div><b>" . $user["firstname"] . " " . $user["lastname"] . "</b>,<br><br><p>Click this link to recover your password<br><a href='" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "&token=".$Token."'>" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "&token=".$Token."</a><br><br></p>Regards,<br> Admin.</div>";
 
         $mail = new PHPMailer(true);
         $mail->SMTPOptions = array(
