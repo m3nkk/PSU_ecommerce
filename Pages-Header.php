@@ -16,8 +16,9 @@ echo '<div class="mainmenu-wrapper">
                 <div class="menuextras">
                     <div class="extras">
                         <ul>';
-
+    
 if ((isset($_SESSION['login_user']))) {
+    echo ' <li> <a href="page-account.php"><b><span class="glyphicon glyphicon-user"></span> Account</b></a></li>';
     echo '<li class="shopping-cart-items" id="number_of_items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.php"><b>' . $_SESSION["number_of_items"] . ' items</b></a></li>';
     echo '<li>Welcome <b>' . $_SESSION["login_user"]['firstname'] . '</b></li> <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>';
 } else {
