@@ -26,7 +26,7 @@ echo '<div class="footer">
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="footer-copyright">&copy; PSU Events, Web Project</div>
+                        <div class="footer-copyright">&copy; PSU Store</div>
                     </div>
                 </div>
             </div>

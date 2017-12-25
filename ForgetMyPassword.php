@@ -13,7 +13,7 @@ if (isset($_POST['UserID'])) {
         $user = mysqli_fetch_array($result);
         require 'PHPMailer/PHPMailer.php';
         require 'PHPMailer/SMTP.php';
-        define("PSU_Store", "http://localhost/PSU_ecommerce");
+        define("PSU_Store", "http://psustore.sa.tn");
         setcookie('CanReset', "You can reset your password for 15min", time() + 1800, "/");
         $emailBody = "<div><b>" . $user["firstname"] . " " . $user["lastname"] . "</b>,<br><br><p>Click this link to recover your password<br><a href='" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "'>" . PSU_Store . "/page-password-reset.php?studentid=" . $user["studentid"] . "</a><br><br></p>Regards,<br> Admin.</div>";
 

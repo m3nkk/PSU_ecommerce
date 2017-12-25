@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['RememberMe'])) {
             setcookie('login_user', serialize($_SESSION['login_user']), time() + (86400 * 30), "/");
         }
-        
+        header("location: index.php");
     } else {
         $message = "Your id or password is invalid";
         echo "<script type='text/javascript'>alert('$message');</script>";
