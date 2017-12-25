@@ -5,6 +5,7 @@ include "dbconnect.php";
 $descriptionValue = $_POST['description'];
 $descriptionValue = preg_replace('/[^\w]/', ' ', $descriptionValue);
 
+
 $productID = $_POST['pid'];
 
 
