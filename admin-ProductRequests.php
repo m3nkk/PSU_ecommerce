@@ -34,6 +34,7 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="productInfo.js"></script>
         <style >
             .desc{
 
@@ -71,7 +72,7 @@
                                         <a
                                             href="page-product-details.php?product_id=<?php echo $row["id"] ?>"><?php echo $row["name"]; ?></a>
                                     </div>
-                                    <div class="desc"><?php echo $row["description"]; ?></div>
+                                    <div class="desc" id="desc<?php echo $row["id"] ?>" ondblclick="changeDescription(<?php echo $row["id"] ?>)"><?php echo $row["description"]; ?></div>
 
                                 </td>
 
@@ -173,6 +174,7 @@
         <script src="js/jquery.bxslider.js"></script>
         <script src="js/main-menu.js"></script>
         <script src="js/template.js"></script>
+        <script src="productInfo.js"></script>
 
     </body>
 </html>
