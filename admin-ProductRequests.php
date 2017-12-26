@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="admin-productRequests.js"></script>
+        
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -36,6 +36,7 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/productInfo.js"></script>
+        <script src="js/admin-productRequests.js"></script>
         <style >
             .desc{
 
