@@ -3,7 +3,7 @@
 include "dbconnect.php";
 
 $studentid = $_POST['reg_studentid'];
-$password = $_POST['reg_password'];
+$password = password_hash($_POST['reg_password'], PASSWORD_DEFAULT);
 $firstName = $_POST['reg_firstName'];
 $lastName = $_POST['reg_lastName'];
 $email = $studentid . "@psu.edu.sa";
@@ -16,9 +16,6 @@ $result = mysqli_query($conn, $sql);
 // if successfully insert data into database, displays message "Successful".
 if ($result) {
     
-  //  echo "Successful";
-  //   echo "<BR>";
-  //  echo "<h3><a href='index.php'>Back to main page</a></h3>";
     session_start();
     $_SESSION['login_user'] = array('id' => $studentid, 'firstname' => $firstName, 'lastname' => $lastName, 'role' => 'student');
     header('Location: index.php');
@@ -30,6 +27,6 @@ if ($result) {
 
 <?php
 
-// close connection
+
 mysqli_close($conn);
 ?>

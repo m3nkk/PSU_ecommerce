@@ -53,6 +53,12 @@
                     <div class="col-sm-7">
                         <div class="basic-login">
                             <form role="form" method="POST" action="login.php">
+                                  <?php
+                                if (isset($_GET['message'])) {
+                                    echo "<div class='alert alert-danger'> <p style='text-align: center'>Your id or password is invalid</p></div>
+                        ";
+                                }
+                                ?>
                                 <div class="form-group">
                                     <label for="login-username"><i class="icon-user"></i> <b>Student ID</b></label>
                                     <input class="form-control" id="login-username" type="text" placeholder="" name="username" required>
