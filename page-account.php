@@ -19,7 +19,7 @@
             <link rel="stylesheet" href="css/leaflet.ie.css" />
         <![endif]-->
         <link rel="stylesheet" href="css/main.css">
-        <script src="register.js"></script>
+        <script src="js/register.js"></script>
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="register"><i class="icon-lock"></i> <b>Phone Number</b></label>
-                                    <input class="form-control" id="reg_phone" name="reg_phone" type="number" placeholder="966*********" onkeydown="getPhoneUpdateRequest()" value = "<?php echo $number; ?>" required>
+                                    <input class="form-control" id="reg_phone" name="reg_phone" type="number" placeholder="966*********" onchange="getPhoneUpdateRequest()" value = "<?php echo $number; ?>" required>
                                     <p id ="phoneMessage"></p> 
                                 </div>
                                 <div class="form-group">

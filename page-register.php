@@ -19,7 +19,7 @@
             <link rel="stylesheet" href="css/leaflet.ie.css" />
         <![endif]-->
         <link rel="stylesheet" href="css/main.css">
-        <script src="register.js"></script>
+        <script src="js/register.js"></script>
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>

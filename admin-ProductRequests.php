@@ -35,7 +35,7 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="productInfo.js"></script>
+        <script src="js/productInfo.js"></script>
         <style >
             .desc{
 
