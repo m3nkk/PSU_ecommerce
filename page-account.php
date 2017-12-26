@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="register"><i class="icon-lock"></i> <b>Phone Number</b></label>
-                                    <input class="form-control" id="reg_phone" name="reg_phone" type="number" placeholder="966*********" onkeydown="getPhoneUpdateRequest()" value = "<?php echo $number; ?>" required>
+                                    <input class="form-control" id="reg_phone" name="reg_phone" type="number" placeholder="966*********" onchange="getPhoneUpdateRequest()" value = "<?php echo $number; ?>" required>
                                     <p id ="phoneMessage"></p> 
                                 </div>
                                 <div class="form-group">

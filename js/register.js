@@ -151,7 +151,7 @@ function phoneCallback(){
 
 			if (code=="1"){
 				checkNumber = 1;
-				if(checkNumber==1){
+				if(checkID==1 && checkNumber==1){
 					document.getElementById("submitBtn").disabled = false;
 				}
 				document.getElementById("phoneMessage").innerHTML = '<span style="color:#50c878"><i class="glyphicon glyphicon-ok"></i>  '+message+'</span>';
